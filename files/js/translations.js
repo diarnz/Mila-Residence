@@ -1,0 +1,337 @@
+// Translation resources for Mila Residence website
+const translations = {
+  en: {
+    translation: {
+      // Navigation
+      "nav.home": "Home",
+      "nav.complex": "Our Complex",
+      "nav.apartments": "Apartments",
+      "nav.amenities": "Amenities",
+      "nav.contact": "Contact Us",
+
+      // Hero Section
+      "hero.title": "Find Your Dream Home in The Heart of The City",
+      "hero.explore": "Let's Explore",
+      "hero.stats.apartments": "Apartments",
+      "hero.stats.parking": "Parking Spaces",
+      "hero.stats.space": "Completion",
+      "hero.stats.security": "Security",
+
+      // Entry Section
+      "entry.welcome": "Welcome to Mila Residence",
+      "entry.description": "One of the most exclusive and luxurious residential complexes in Ferizaj, Mila Residence is a true masterpiece of modern architecture and design. Located in the heart of the city, our complex offers a unique blend of comfort, convenience, and elegance.",
+      "entry.readMore": "Read More",
+
+      // Photo Tour
+      "photo.gallery": "Gallery",
+      "photo.tour": "Photo Tour",
+
+      // Apartment Layout
+      "apartment.layouts": "Apartment Layouts",
+      "apartment.explore": "Explore Our Apartment Types",
+      "apartment.apt1": "Apt 1",
+      "apartment.apt2": "Apt 2",
+      "apartment.apt3": "Apt 3",
+      "apartment.apt4": "Apt 4",
+      "apartment.apt5": "Apt 5",
+      "apartment.apt6": "Apt 6",
+      "apartment.apt7": "Apt 7",
+      "apartment.apt8": "Apt 8",
+      "office": "Office",
+      "apartment.1.desc": "Spacious 3-bedroom apartment with open living area and balcony.",
+      "apartment.2.desc": "Family-sized 3-bedroom apartment, perfect for families.",
+      "apartment.3.desc": "Modern 2-bedroom apartment with a spacious kitchen.",
+      "apartment.4.desc": "2-bedroom apartment with a great household design.",
+      "apartment.5.desc": "Spacious 2-bedroom apartment with open living area and balcony.",
+      "apartment.6.desc": "Modern 3-bedroom apartment, perfect for families.",
+      "apartment.7.desc": "2-bedroom apartment with a great spacious design.",
+      "apartment.8.desc": "2-bedroom apartment, perfect for couples.",
+      "office.desc": "Big spacious office perfect for any kind of work.",
+
+      // Counter
+      "counter.concrete": "Meters Cubed of Concrete ",
+      "counter.steel": "Tonnes of Steel Reinforcments",
+      "counter.date": "Completion Date",
+
+      // Amenities
+      "amenities.title": "Amenities",
+      "amenities.subtitle": "Experience the perfect blend of style and functionality",
+      "amenities.virtualTour": "Virtual Tour",
+      "amenities.virtualTour.desc": "Experience Mila Residence from anywhere with our immersive virtual tour, showcasing every detail of our modern living spaces and amenities.",
+      "amenities.groundFloor": "Ground Floor",
+      "amenities.groundFloor.desc": "Our ground floor is designed for convenience and accessibility, featuring welcoming common areas and easy access to all amenities.",
+      "amenities.parking": "Parking Spaces",
+      "amenities.parking.desc": "Ample and secure parking spaces are available for all residents and guests, ensuring peace of mind and convenience.",
+      "amenities.cafeRestaurant": "Cafe & Restaurant",
+      "amenities.cafeRestaurant.desc": "Enjoy delicious meals and a relaxing atmosphere at our on-site cafe and restaurant, perfect for socializing or unwinding.",
+      "amenities.stores": "Stores",
+      "amenities.stores.desc": "Convenient shopping options are just steps away, with a variety of stores located within the Mila Residence complex.",
+      "amenities.fitness": "Fitness Center",
+      "amenities.fitness.desc": "Stay active and healthy in our state-of-the-art fitness center, equipped with modern machines and a motivating environment.",
+      "amenities.playground": "Privately Owned Land",
+      "amenities.playground.desc": "This land is privately owned and not available for public use.",
+      "amenities.greenSpaces": "Green Spaces",
+      "amenities.greenSpaces.desc": "Beautifully landscaped green spaces provide a tranquil retreat for relaxation, walks, and outdoor activities.",
+      "amenities.security": "24/7 Security",
+      "amenities.security.desc": "Our professional security team and advanced systems ensure a safe and secure environment around the clock.",
+      "amenities.smartHome": "Smart Home Features",
+      "amenities.smartHome.desc": "Enjoy the convenience of smart home technology, allowing you to control lighting, climate, and security with ease.",
+      "amenities.elevator": "3 Elevators",
+      "amenities.elevator.desc": "Our apartments complex offers 3 elevators for your use.",
+      "amenities.multipurpose": "Multipurpose room",
+      "amenities.multipurpose.desc": "Our building offers a Multipurpose room which you can use to celebrate your happy moments or have meetings, etc. (88 m²)",
+
+      // News
+      "news.title": "News",
+      "news.subtitle": "Stay updated with the latest news and events",
+      "news.item1": "News 1",
+      "news.item2": "News 2",
+      "news.item3": "News 3",
+      "news.1": "We have completed the concreting of the slab above the second floor.",
+      "news.2": "Precision-crafted beams — strong, durable, ready for any challenge.",
+      "news.3": "Reinforcement of the pillars and walls of the third floor elevators has begun.",
+
+      // CTA Sections
+      "cta.ready": "Ready to Experience Mila Living?",
+      "cta.contact": "Contact us today to schedule a tour or learn more about our exclusive amenities and lifestyle options.",
+      "cta.contactUs": "Contact Us",
+      "cta.backHome": "Back to Home",
+      "cta.seeAmenities": "See Amenities",
+      "cta.findApartment": "Ready to Find Your Dream Apartment?",
+      "cta.apartmentDesc": "Contact us today to schedule a tour or learn more about our available apartments and offers.",
+      "cta.viewMore": "View More",
+
+      // Contact Page
+      "contact.title": "Contact Us",
+      "contact.subtitle": "We'd love to hear from you! Fill out the form below or reach us directly using the contact details.",
+      "contact.name": "Your Name",
+      "contact.email": "Your Email",
+      "contact.phone": "Your Phone Number",
+      "contact.message": "Your Message",
+      "contact.send": "Send Message",
+      "contact.details": "Contact Details",
+      "contact.address": "Address: Cen Dugolli, Ferizaj, Kosovo",
+      "contact.map": "Find Us on the Map",
+      "contact.mapPlaceholder": "Map goes here",
+
+      // Interactive Map
+      "map.title": "Interactive Apartment Navigation",
+      "map.floor1": "Floor 1",
+      "map.floor2": "Floor 2",
+      "map.floor3": "Floor 3",
+      "map.floor4": "Floor 4",
+      "map.floor5": "Floor 5",
+      "map.floor6": "Floor 6",
+      "map.floor7": "Floor 7",
+      "map.floor8": "Floor 8",
+      "map.floor9": "Floor 9",
+      "map.floor10": "Floor 10",
+      "map.floor11": "Floor 11",
+      "map.floor12": "Floor 12",
+      "map.floor13": "Floor 13 (Penthouse)",
+      "map.floor14": "Floor 14 (Penthouse)",
+      "map.floor15": "Floor 15 (Penthouse)",
+      "map.groundFloor": "Ground Floor",
+      "map.room1": "Room 1",
+      "map.room2": "Room 2",
+      "map.noPlan": "No floor plan available.",
+      "map.unavailable": "Unavailable for purchase",
+
+      // Footer
+      "footer.copyright": "© 2025 Mila Residence. All rights reserved.",
+
+      // Language Switcher
+      "lang.en": "English",
+      "lang.sq": "Shqip",
+
+      // Apartment Detail Page Headings
+      "apartment1.hero": "APARTMENT TYPE 1",
+      "apartment2.hero": "APARTMENT TYPE 2",
+      "apartment3.hero": "APARTMENT TYPE 3",
+      "apartment4.hero": "APARTMENT TYPE 4",
+      "apartment5.hero": "APARTMENT TYPE 5",
+      "apartment6.hero": "APARTMENT TYPE 6",
+      "apartment7.hero": "APARTMENT TYPE 7",
+      "apartment8.hero": "APARTMENT TYPE 8",
+      "office.hero": "OFFICE",
+      "apartment.livingRoomKitchen": "Living Room + Kitchen",
+      "apartment.masterBedroom": "Master Bedroom",
+      "apartment.hallway": "Hallway",
+      "apartment.wallsSurface": "Walls Surface",
+      "apartment.bedroom2": "Bedroom 2",
+      "apartment.bedroom3": "Bedroom 3",
+      "apartment.utility": "Utility",
+      "apartment.bathroomToilet": "Bathroom and Toilet",
+      "apartment.surfaceGross": "Gross Surface:",
+      "toilet": "Toilet",
+      "officeKitchen": "Office Space + Kitchen"
+    }
+  },
+  sq: {
+    translation: {
+      // Navigation
+      "nav.home": "Ballina",
+      "nav.complex": "Kompleksi Ynë",
+      "nav.apartments": "Banesat",
+      "nav.amenities": "Shërbimet",
+      "nav.contact": "Na Kontaktoni",
+
+      // Hero Section
+      "hero.title": "Gjeni Shtëpinë e Ëndrrave Tuaja në Zemër të Qytetit",
+      "hero.explore": "Le të Eksplorojmë",
+      "hero.stats.apartments": "Banesa",
+      "hero.stats.parking": "Vende Parkingu",
+      "hero.stats.space": "Përfundimi",
+      "hero.stats.security": "Siguria",
+
+      // Entry Section
+      "entry.welcome": "Mirë se vini në Mila Residence",
+      "entry.description": "Një nga komplekset më ekskluzive dhe luksoze të banimit në Ferizaj, Mila Residence është një kryevepër e vërtetë e arkitekturës dhe dizajnit modern. I vendosur në zemër të qytetit, kompleksi ynë ofron një përzierje unike të rehatisë, komoditetit dhe elegancës.",
+      "entry.readMore": "Lexoni Më Shumë",
+
+      // Photo Tour
+      "photo.gallery": "Galeria",
+      "photo.tour": "Turne Fotografike",
+
+      // Apartment Layout
+      "apartment.layouts": "Planet e Banesave",
+      "apartment.explore": "Eksploroni Llojet e Banesave Tona",
+      "apartment.apt1": "Apt 1",
+      "apartment.apt2": "Apt 2",
+      "apartment.apt3": "Apt 3",
+      "apartment.apt4": "Apt 4",
+      "apartment.apt5": "Apt 5",
+      "apartment.apt6": "Apt 6",
+      "apartment.apt7": "Apt 7",
+      "apartment.apt8": "Apt 8",
+      "office": "Zyre",
+      "apartment.1.desc": "Banesë e bollshëme me 3 dhoma gjumi me zonë të hapur ndenjeje dhe ballkon.",
+      "apartment.2.desc": "Banesë me 3 dhoma gjumi për familje, perfekt për familjet.",
+      "apartment.3.desc": "Banesë moderne me 2 dhoma gjumi me një kuzhinë të bollshme.",
+      "apartment.4.desc": "Banesë me 2 dhoma gjumi me një dizajn të shkëlqyer shtëpiak.",
+      "apartment.5.desc": "Banesë e bollshëme me 2 dhoma gjumi me zonë të hapur ndenjeje dhe ballkon.",
+      "apartment.6.desc": "Banesë moderne me 3 dhoma gjumi, perfekt për familjet.",
+      "apartment.7.desc": "Banesë me 2 dhoma gjumi me një dizajn të shkëlqyer dhe të bollshëm.",
+      "apartment.8.desc": "Banesë me 2 dhoma gjumi, perfekt për çifte.",
+      "office.desc": "Zyre e gjerë dhe me shumë hapsirë. Perfekte për çdo lloj pune.",
+      
+      // Counter
+      "counter.concrete": "Metra Kubë Beton",
+      "counter.steel": "Ton Armaturë",
+      "counter.date": "Data e Përfundimit",
+
+      // Amenities
+      "amenities.title": "Shërbimet",
+      "amenities.subtitle": "Përjetoni përzierjen perfekte të stilit dhe funksionalitetit",
+      "amenities.virtualTour": "Turne Virtuale",
+      "amenities.virtualTour.desc": "Përjetoni Mila Residence nga kudo me turneun tonë virtual, duke shfaqur çdo detaj të hapësirave tona moderne të jetesës dhe përshtatjeve.",
+      "amenities.groundFloor": "Përdhesa",
+      "amenities.groundFloor.desc": "Përdhesa jonë është projektuar për komoditet dhe qasje të lehtë, me hapësira të përbashkëta mikpritëse dhe qasje të lehtë në të gjitha shërbimet.",
+      "amenities.parking": "Vende Parkingu",
+      "amenities.parking.desc": "Vende të bollshme dhe të sigurta parkimi janë të disponueshme për të gjithë banorët dhe mysafirët, duke siguruar qetësi dhe komoditet.",
+      "amenities.cafeRestaurant": "Kafe & Restorant",
+      "amenities.cafeRestaurant.desc": "Shijoni ushqime të shijshme dhe një atmosferë relaksuese në kafenë dhe restorantin tonë, të përshtatshme për shoqërim ose relaksim.",
+      "amenities.stores": "Dyqane",
+      "amenities.stores.desc": "Opsionet e përshtatshme të blerjeve janë vetëm disa hapa larg, me një shumëllojshmëri dyqanesh brenda kompleksit Mila Residence.",
+      "amenities.fitness": "Qendra e Fitnesit",
+      "amenities.fitness.desc": "Qëndroni aktiv dhe të shëndetshëm në qendrën tonë moderne të fitnesit, të pajisur me pajisje moderne dhe një ambient motivues.",
+      "amenities.playground": "Tokë Private",
+      "amenities.playground.desc": "Kjo tokë është në pronësi private dhe nuk është e hapur për përdorim publik.",
+      "amenities.greenSpaces": "Hapësira të Gjelbërta",
+      "amenities.greenSpaces.desc": "Hapësira të gjelbra të dizajnuara bukur ofrojnë një vend të qetë për relaksim, shëtitje dhe aktivitete në natyrë.",
+      "amenities.security": "Siguria 24/7",
+      "amenities.security.desc": "Ekipi ynë profesional i sigurisë dhe sistemet e avancuara sigurojnë një mjedis të sigurt dhe të mbrojtur gjatë gjithë kohës.",
+      "amenities.smartHome": "Veçoritë e Shtëpisë së Mençur",
+      "amenities.smartHome.desc": "Shijoni komoditetin e teknologjisë së shtëpisë së mençur, duke ju lejuar të kontrolloni ndriçimin, klimën dhe sigurinë me lehtësi.",
+      "amenities.elevator": "3 Ashensorë",
+      "amenities.elevator.desc": "Kompleksi ynë i banesava ofron 3 ashensorë për përdorimin tuaj.",
+      "amenities.multipurpose": "Sallë për shumë qëllime.",
+      "amenities.multipurpose.desc": "Ndërtesa jonë ofron një sallë shumëfunksionale të cilën mund ta përdorni për të festuar momentet tuaja të lumtura ose për të zhvilluar takime, etj. (88 m²)",
+
+      // News
+      "news.title": "Lajme",
+      "news.subtitle": "Qëndroni të përditësuar me lajmet dhe ngjarjet më të fundit",
+      "news.item1": "Lajmi 1",
+      "news.item2": "Lajmi 2",
+      "news.item3": "Lajmi 3",
+      "news.1": "Kemi përfunduar betonimin e pllakës mbi katin e dytë.",
+      "news.2": "Trarët e punuar me përpikmëri — të fortë, të qëndrueshëm, gati për çdo sfidë.",
+      "news.3": "Ka filluar armimi i shtyllave dhe mureve të ashensorëve të katit të tretë.",
+
+      // CTA Sections
+      "cta.ready": "Gati për të Përjetuar Jetën në Mila?",
+      "cta.contact": "Na kontaktoni sot për të planifikuar një turne ose për të mësuar më shumë rreth përshtatjeve tona ekskluzive dhe opsioneve të jetesës.",
+      "cta.contactUs": "Na Kontaktoni",
+      "cta.backHome": "Kthehu në Ballinë",
+      "cta.seeAmenities": "Shiko Shërbimet",
+      "cta.findApartment": "Gati për të Gjetur Apartamentin Tuaj të Ëndrrave?",
+      "cta.apartmentDesc": "Na kontaktoni sot për të planifikuar një turne ose për të mësuar më shumë rreth apartamenteve tona të disponueshme dhe ofertave.",
+      "cta.viewMore": "Shiko më shumë",
+
+      // Contact Page
+      "contact.title": "Na Kontaktoni",
+      "contact.subtitle": "Do të na pëlqente të dëgjojmë nga ju! Plotësoni formularin më poshtë ose na kontaktoni direkt duke përdorur detajet e kontaktit.",
+      "contact.name": "Emri Juaj",
+      "contact.email": "Email-i Juaj",
+      "contact.phone": "Numri Juaj i Telefonit",
+      "contact.message": "Mesazhi Juaj",
+      "contact.send": "Dërgo Mesazhin",
+      "contact.details": "Detajet e Kontaktit",
+      "contact.address": "Adresa: Cen Dugolli, Ferizaj, Kosovë",
+      "contact.map": "Na Gjeni në Hartë",
+      "contact.mapPlaceholder": "Harta shfaqet këtu",
+
+      // Interactive Map
+      "map.title": "Navigimi Interaktiv i Apartamenteve",
+      "map.floor1": "Kati 1",
+      "map.floor2": "Kati 2",
+      "map.floor3": "Kati 3",
+      "map.floor4": "Kati 4",
+      "map.floor5": "Kati 5",
+      "map.floor6": "Kati 6",
+      "map.floor7": "Kati 7",
+      "map.floor8": "Kati 8",
+      "map.floor9": "Kati 9",
+      "map.floor10": "Kati 10",
+      "map.floor11": "Kati 11",
+      "map.floor12": "Kati 12",
+      "map.floor13": "Kati 13 (Penthouse)",
+      "map.floor14": "Kati 14 (Penthouse",
+      "map.floor15": "Kati 15 (Penthouse)",
+      "map.groundFloor": "Përdhesa",
+      "map.room1": "Dhoma 1",
+      "map.room2": "Dhoma 2",
+      "map.noPlan": "Nuk ka plan të disponueshëm për katin.",
+      "map.unavailable": "I padisponueshëm për blerje",
+
+      // Footer
+      "footer.copyright": "© 2025 Mila Residence. Të gjitha të drejtat e rezervuara.",
+
+      // Language Switcher
+      "lang.en": "English",
+      "lang.sq": "Shqip",
+
+      // Apartment Detail Page Headings
+      "apartment1.hero": "TIPI I BANESËS 1",
+      "apartment2.hero": "TIPI I BANESËS 2",
+      "apartment3.hero": "TIPI I BANESËS 3",
+      "apartment4.hero": "TIPI I BANESËS 4",
+      "apartment5.hero": "TIPI I BANESËS 5",
+      "apartment6.hero": "TIPI I BANESËS 6",
+      "apartment7.hero": "TIPI I BANESËS 7",
+      "apartment8.hero": "TIPI I BANESËS 8",
+      "office.hero": "ZYRE",
+      "apartment.livingRoomKitchen": "Dhomë Dite + Kuzhinë",
+      "apartment.masterBedroom": "Dhoma Matrimoniale",
+      "apartment.hallway": "Korridor",
+      "apartment.wallsSurface": "Sipërfaqja e Mureve",
+      "apartment.bedroom2": "Dhoma e Gjumi 2",
+      "apartment.bedroom3": "Dhoma e Gjumi 3",
+      "apartment.utility": "Depo",
+      "apartment.bathroomToilet": "Banjo dhe Tualet",
+      "apartment.surfaceGross": "Sipërfaqja Bruto:",
+      "toilet": "Tualeti",
+      "officeKitchen": "Hapësirë për zyrë + Kuzhina"
+    }
+  }
+}; 

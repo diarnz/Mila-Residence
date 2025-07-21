@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Complex | Mila Residence</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Archivo+Black&family=DM+Serif+Display&family=Gasoek+One&family=Kalnia:wght@363&family=LXGW+Marker+Gothic&family=Pacifico&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Favicon - Multiple sizes for better compatibility -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logoupd1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/logoupd1.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/logoupd1.png">
+  <link rel="shortcut icon" href="/assets/images/logoupd1.png">
+  <style>
+    .interactive-map-container {
+      position: relative;
+      max-width: 700px;
+      margin: 40px auto;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .main-building-img {
+      width: 100%;
+      display: block;
+    }
+    .svg-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+    }
+    .floor-area {
+      cursor: pointer;
+      opacity: 0.15;
+      transition: opacity 0.2s;
+      pointer-events: all;
+    }
+    .floor-area:hover, .floor-area.active {
+      opacity: 0.45;
+      stroke: #e53935;
+      stroke-width: 2;
+    }
+    .floor-label {
+      font-size: 1.1em;
+      font-family: Arial, sans-serif;
+      fill: #fff;
+      text-shadow: 0 1px 4px #000;
+      pointer-events: none;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.6);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 24px;
+      border-radius: 10px;
+      max-width: 90vw;
+      max-height: 90vh;
+      overflow: auto;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px; right: 16px;
+      font-size: 1.5em;
+      color: #e53935;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .room-rect {
+      transition: opacity 0.2s;
+      opacity: 0.3;
+    }
+    .room-rect:hover {
+      opacity: 0.9;
+    }
+    .view-more-btn {
+      display: inline-block;
+      padding: 10px 28px;
+      background: #862320;
+      color: #fff;
+      font-weight: 700;
+      border-radius: 8px;
+      font-size: 1.1em;
+      text-decoration: none;
+      box-shadow: 0 2px 12px #86232022;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .view-more-btn:hover {
+      background: #a83232;
+      transform: scale(1.08);
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="/assets/images/logoupdBlack.png" alt="Mila Residence Logo" id="navbar-logo" />
+      <span>Mila Residence</span>
+    </div>
+    
+    <!-- Hamburger Menu Button -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    
+    <nav class="nav-menu" id="nav-menu">
+      <ul>
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="interactive-map.html" class="active" data-i18n="nav.complex">Our Complex</a></li>
+        <li><a href="apartments.html" data-i18n="nav.apartments">Apartments</a></li>
+        <li><a href="amenities.html" data-i18n="nav.amenities">Amenities</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact Us</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+      <button class="lang-btn" data-lang="en" data-i18n="lang.en">English</button>
+      <button class="lang-btn" data-lang="sq" data-i18n="lang.sq">Shqip</button>
+    </div>
+  </header>
+  <div class="main-content">
+  <main>
+    <h1 style="text-align:center; margin-top:32px;" data-i18n="map.title">Interactive Apartment Navigation</h1>
+    <div class="interactive-map-container">
+      <img src="../assets/images/01-MILA-Residence_20-07-2024.png" alt="Mila Residence" class="main-building-img" id="mainBuildingImg">
+      <svg class="svg-overlay" viewBox="0 0 1200 1800" id="buildingOverlay">
+        <!-- Example floor overlays (rects, adjust coordinates as needed) -->
+        <rect class="floor-area" x="120" y="1400" width="970" height="110" fill="#e53935" data-floor="ground-floor" />
+        <rect class="floor-area" x="120" y="1300" width="970" height="90" fill="#43a047" data-floor="1" />
+        <rect class="floor-area" x="120" y="1230" width="870" height="70" fill="#1e88e5" data-floor="2" />
+        <rect class="floor-area" x="120" y="1150" width="870" height="70" fill="#1e88e5" data-floor="3" />
+        <rect class="floor-area" x="120" y="1070" width="870" height="70" fill="#1e88e5" data-floor="4" />
+        <rect class="floor-area" x="120" y="1000" width="870" height="70" fill="#1e88e5" data-floor="5" />
+        <rect class="floor-area" x="120" y="930" width="870" height="70" fill="#1e88e5" data-floor="6" />
+        <rect class="floor-area" x="120" y="850" width="870" height="70" fill="#1e88e5" data-floor="7" />
+        <rect class="floor-area" x="120" y="780" width="870" height="70" fill="#1e88e5" data-floor="8" />
+        <rect class="floor-area" x="120" y="700" width="870" height="70" fill="#1e88e5" data-floor="9" />
+        <rect class="floor-area" x="120" y="630" width="870" height="70" fill="#1e88e5" data-floor="10" />
+        <rect class="floor-area" x="120" y="560" width="870" height="70" fill="#1e88e5" data-floor="11" />
+        <rect class="floor-area" x="120" y="480" width="870" height="70" fill="#1e88e5" data-floor="12" />
+        <rect class="floor-area" x="120" y="340" width="870" height="70" fill="#1e88e5" data-floor="13" />
+        <rect class="floor-area" x="120" y="260" width="870" height="70" fill="#1e88e5" data-floor="14" />
+        <rect class="floor-area" x="120" y="180" width="870" height="70" fill="#1e88e5" data-floor="15" />
+        <rect class="floor-area" x="1020" y="400" width="70" height="880" fill="#800080" data-floor="office" />
+        <text x="600" y="1470" text-anchor="middle" class="floor-label" data-i18n="map.groundFloor">Ground Floor</text>
+        <text x="600" y="1350" text-anchor="middle" class="floor-label" data-i18n="map.floor1">Floor 1</text>
+        <text x="600" y="1270" text-anchor="middle" class="floor-label" data-i18n="map.floor2">Floor 2</text>
+        <text x="600" y="1190" text-anchor="middle" class="floor-label" data-i18n="map.floor3">Floor 3</text>
+        <text x="600" y="1110" text-anchor="middle" class="floor-label" data-i18n="map.floor4">Floor 4</text>
+        <text x="600" y="1040" text-anchor="middle" class="floor-label" data-i18n="map.floor5">Floor 5</text>
+        <text x="600" y="970" text-anchor="middle" class="floor-label" data-i18n="map.floor6">Floor 6</text>
+        <text x="600" y="890" text-anchor="middle" class="floor-label" data-i18n="map.floor7">Floor 7</text>
+        <text x="600" y="820" text-anchor="middle" class="floor-label" data-i18n="map.floor8">Floor 8</text>
+        <text x="600" y="745" text-anchor="middle" class="floor-label" data-i18n="map.floor9">Floor 9</text>
+        <text x="600" y="675" text-anchor="middle" class="floor-label" data-i18n="map.floor10">Floor 10</text>
+        <text x="600" y="600" text-anchor="middle" class="floor-label" data-i18n="map.floor11">Floor 11</text>
+        <text x="600" y="525" text-anchor="middle" class="floor-label" data-i18n="map.floor12">Floor 12</text>
+        <text x="600" y="380" text-anchor="middle" class="floor-label" data-i18n="map.floor13">Floor 13 (Penthouse)</text>
+        <text x="600" y="300" text-anchor="middle" class="floor-label" data-i18n="map.floor14">Floor 14 (Penthouse)</text>
+        <text x="600" y="220" text-anchor="middle" class="floor-label" data-i18n="map.floor15">Floor 15 (Penthouse)</text>
+        <text x="755" y="535" transform="rotate(-90 1055 535)" text-anchor="middle" class="floor-label" data-i18n="office">Office</text>
+      </svg>
+    </div>
+    <!-- Modal for floor/room navigation -->
+    <div class="modal" id="floorModal">
+      <div class="modal-content" id="modalContent">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <div id="floorPlanContainer">
+          <!-- Floor plan and room overlays will be injected here -->
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-links">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="interactive-map.html" data-i18n="nav.complex">Our Complex</a>
+      <a href="apartments.html" data-i18n="nav.apartments">Apartments</a>
+      <a href="amenities.html" data-i18n="nav.amenities">Amenities</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact Us</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.facebook.com/mila.residence.2025" target="_blank" aria-label="Facebook">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg>
+      </a>
+      <a href="https://www.instagram.com/mila.residence05" target="_blank" aria-label="Instagram">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.069 1.646.069 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.069-4.85.069s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.515 2.497 5.782 2.225 7.148 2.163 8.414 2.105 8.794 2.163 12 2.163zm0-2.163C8.741 0 8.332.012 7.052.07 5.771.128 4.659.334 3.678 1.315c-.98.98-1.187 2.092-1.245 3.373C2.012 5.668 2 6.077 2 12c0 5.923.012 6.332.07 7.612.058 1.281.265 2.393 1.245 3.373.98.98 2.092 1.187 3.373 1.245C8.332 23.988 8.741 24 12 24s3.668-.012 4.948-.07c1.281-.058 2.393-.265 3.373-1.245.98-.98 1.187-2.092 1.245-3.373.058-1.28.07-1.689.07-7.612 0-5.923-.012-6.332-.07-7.612-.058-1.281-.265-2.393-1.245-3.373-.98-.98-2.092-1.187-3.373-1.245C15.668.012 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm7.2-11.162a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+      </a>
+      <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.849-3.037-1.851 0-2.132 1.445-2.132 2.939v5.667H9.358V9h3.414v1.561h.049c.476-.899 1.637-1.849 3.37-1.849 3.602 0 4.267 2.368 4.267 5.455v6.285zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM6.814 20.452H3.861V9h2.953v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.723v20.549C0 23.229.792 24 1.771 24h20.451C23.2 24 24 23.229 24 22.271V1.723C24 .771 23.2 0 22.225 0z"/></svg>
+      </a>
+    </div>
+    <div class="footer-copyright" data-i18n="footer.copyright">&copy; 2025 Mila Residence. All rights reserved.</div>
+  </footer>
+  </div>
+  <!-- i18next Library -->
+  <script src="https://cdn.jsdelivr.net/npm/i18next@23.7.16/dist/umd/i18next.min.js"></script>
+  
+  <!-- Translation files -->
+  <script src="js/translations.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/script.js"></script>
+
+
+  <script>
+    // JS for interactive overlays
+    document.querySelectorAll('.floor-area').forEach(area => {
+      area.addEventListener('mouseenter', function() {
+        this.classList.add('active');
+      });
+      area.addEventListener('mouseleave', function() {
+        this.classList.remove('active');
+      });
+      area.addEventListener('click', function() {
+        const floor = this.getAttribute('data-floor');
+        showFloorModal(floor);
+      });
+    });
+
+function getSVGOverlayForFloor(floor) {
+  switch (floor) {
+    case '4':
+      return `
+        <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:all;" viewBox="0 0 1123.2 1587.84">
+          <path class="room-rect" d="m 3.5355339,863.37738 268.7005761,-2.12132 -0.70711,37.47666 140.00715,-2.82843 -0.70711,22.62742
+                                      h 16.97056
+                                      l 1.41421,77.07463 -55.86143,1.41422 -0.70711,37.47664 -33.23402,1.4142
+                                      v -8.4853
+                                      l -93.33809,0.7072
+                                      v 50.2045
+                                      L 145.664,1077.6307
+                                      h -5.65686
+                                      l 0.70711,-14.1421 -30.40559,-0.7071
+                                      v -13.435
+                                      L 4.2426407,1046.518
+                                      Z" fill-opacity="1" stroke="#e53935" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment1.html')" />
+          <path class="room-rect" d="m 5.3033008,1048.9929 105.3589092,-0.7071 1.06066,16.2635 26.51651,1.0606 -0.35356,13.0815 108.54089,1.0607 -0.7071,-50.2046
+                                      h 91.92388
+                                      l 1.06066,7.071 33.94112,-1.7677 0.35356,7.4246 98.64139,-0.3536 1.06066,60.1041 -50.20458,2.1213 0.70711,107.1267 -307.94501,1.4142 0.35356,44.1942 -107.8337854,0.3536 0.3535534,-45.2549
+                                      H 4.2426407
+                                      Z" fill="#43a047" fill-opacity="1" stroke="#43a047" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment2.html')" />
+          <path class="room-rect" d="m 474,968
+                                      c 141,0 141,1 141,1
+                                      v 50
+                                      h 79
+                                      v 192
+                                      h -8
+                                      l 1,49
+                                      H 583
+                                      v -45
+                                      l -164,3 2,-115 52,-2
+                                      z" fill="#5F1A37" fill-opacity="1" stroke="#5F1A37" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment3.html')" />
+          <path class="room-rect" d="m 613,968 1,56 79,-2 1,187
+                                      h 16
+                                      v 44
+                                      l 96,-1
+                                      v -39
+                                      h 172
+                                      l -3,-147 -174,-1
+                                      V 960
+                                      H 625
+                                      l 2,10
+                                      z" fill="#D4E09B" fill-opacity="1" stroke="#D4E09B" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment4.html')" />
+          <path class="room-rect" d="m 568,862
+                                      h 31
+                                      l 1,-270
+                                      H 414
+                                      l -1,88
+                                      h -39
+                                      c 0,0 1,27 1,36 0,9 -1,38 -1,38
+                                      l 39,-2 -1,102 150,-1
+                                      z" fill="#73C2BE" fill-opacity="1" stroke="#73C2BE" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment5.html')" />
+          <path class="room-rect" d="m 599.273,550.48263
+                                        c 0.35355,42.77996 0.35355,42.77996 0.35355,42.77996
+                                        L 369.10974,591.14127 370.52395,483.30748 365,482.5 364.5,388
+                                        H 410
+                                        l 0.5,-84.5 233,-0.5
+                                        v 36
+                                        l -4,-0.5 0.5,116.5 -83.5,-1
+                                        v 55
+                                        l 42.5,-1
+                                        z" fill="#7E5A9B" fill-opacity="1" stroke="#7E5A9B" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment6.html')" />
+          <path class="room-rect" d="m 652.5,578 53.5,-0.5 3,20
+                                    h 127.5
+                                    v -162
+                                    l 42,1.5
+                                    V 351.5
+                                    L 840,350
+                                    l 0.5,-37 -137.5,-1.5 1,35.5 -64.5,-0.5 0.5,107.5 -82.5,1 1.5,52.5
+                                    h 93
+                                    z" fill="#496F5D" fill-opacity="1" stroke="#496F5D" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment7.html')" />
+           <path class="room-rect" d="m 652.5,577 53.5,1.5 1,18
+                                      h 129
+                                      l 1,112.5
+                                      h 50
+                                      l -0.5,67
+                                      h -49
+                                      v 50
+                                      l -185,-1.5
+                                      z" fill="#0000FF" fill-opacity="1" stroke="#0000FF" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment8.html')" />
+       
+        </svg>
+      `;
+    case '5':
+      return `
+        <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:all;" viewBox="0 0 297 420">
+          <path class="room-rect" d="M 1.4721187,228.36243 66.33736,227.62638
+                                      v 8.64869
+                                      l 33.85874,0.0921
+                                      v 5.98049
+                                      l 3.49628,-0.27601 0.27602,18.21745 -13.157059,0.0921 -0.092,9.66082 -7.912639,-0.092 -0.184015,-1.65617 -22.72584,0.27603
+                                      v 11.77693
+                                      l -25.854087,0.092 0.09202,-3.03625 -6.992565,-0.27601 -0.092,-3.86434 -25.8540891,0.27605
+                                      z" fill="#e53935" fill-opacity="1" stroke="#e53935" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment1.html')" />
+          <path class="room-rect" d="m 1.6561338,273.72211 25.0260212,-0.18403 0.184015,3.68032 6.532528,0.36804
+                                      v 3.0362
+                                      l 26.958179,0.27606 0.09202,-11.86897 21.621749,-0.092 0.09203,1.38006 8.556687,0.18403 0.09202,-1.19604
+                                      v 2.48416
+                                      l 24.381967,0.36802
+                                      v 14.53719
+                                      l -12.88104,-0.27603 0.46003,26.95816 -74.618022,-0.64405 0.09201,11.59293
+                                      H 2.0241635
+                                      l 0.092008,-10.21281 -1.38011171,-0.18403
+                                      z" fill="#43a047" fill-opacity="1" stroke="#43a047" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment2.html')" />
+          <path class="room-rect" d="m 136.44703,253.66449 c 0,0 -20.88569,-0.55204 -21.06971,-0.18401 -0.18401,0.36803 0,33.67472 0,33.67472 l -12.60502,-0.18402 -0.18401,25.8541 39.74721,0.36801 v 11.04091 l 24.84201,-0.18402 0.36803,-11.86894 1.2881,-0.18402 -0.46004,-45.45169 -18.5855,-0.36803 -0.36803,-12.60501 z" fill="#5F1A37" fill-opacity="1" stroke="#5F1A37" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment3.html')" />
+          <path class="room-rect" d="m 194.96375,251.91635 c -1.93215,0.092 -42.69145,0 -42.69145,0 l -0.18401,2.20818 h -1.84015 l -0.36803,11.96097 19.13755,0.27602 0.46003,46.37174 h 2.3922 l -0.092,11.22492 h 24.47398 l -0.36803,-10.94888 3.7723,0.092 1.93216,-0.092 -0.18402,-1.56413 36.25093,-0.36804 -0.55204,-33.85873 -41.31134,-0.27601 z" fill="#D4E09B" fill-opacity="1" stroke="#D4E09B" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment4.html')" />
+          <path class="room-rect" d="m 145.92379,213.91728 c -0.092,14.16915 0,14.35316 0,14.35316 l -8.18866,-0.18401 -1.93216,-0.46004 v -1.10409 l -9.47676,-0.18401 -26.13011,-0.18402 0.73606,-20.42565 0.18401,-4.69238 -10.212826,0.27602 -0.09201,-18.6775 9.752796,0.092 0.18401,-20.33364 45.26766,-0.46004 z" fill="#73C2BE" fill-opacity="1" stroke="#73C2BE" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment5.html')" />
+          <path class="room-rect" d="m 146.1078,152.64033 -0.18401,8.92472 H 89.707248 l 0.276021,-49.22397 10.580861,-0.18402 0.18401,-20.149625 55.02045,0.368027 -0.092,36.618958 -20.14963,0.18402 0.36803,12.60501 10.48885,-0.092 z" fill="#7E5A9B" fill-opacity="1" stroke="#7E5A9B" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment6.html')" />
+          <path class="room-rect" d="m 158.71282,151.26022 -0.092,7.26859 13.7091,0.27602 0.18402,4.50837 31.46654,-0.18402 -0.36803,-39.19517 h 10.85688 l -0.27602,-20.79368 -10.02881,0.36803 -0.27603,-9.200741 -32.11059,-0.09201 -0.27602,9.108741 -15.08922,-0.27602 -0.64405,26.22211 -19.32156,0.18402 0.18401,11.50093 22.17379,0.27602 z" fill="#496F5D" fill-opacity="1" stroke="#496F5D" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment7.html')" />
+          <path class="room-rect" d="m 158.71282,159.08085 -0.092,61.55298 45.17565,-0.27603 -0.55205,-13.43308 12.51301,-0.18402 -0.36803,-16.28531 -11.31691,-0.092 0.092,-26.95818 -32.47863,0.36803 v -4.14033 z" fill="#124559" fill-opacity="1" stroke="#124559" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment8.html')" />
+        </svg>
+      `;
+    case '6':
+      return `
+        <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:all;" viewBox="0 0 1080.2 1570.84">
+          <path class="room-rect" d="m 3.4782293,861.20957 259.4759007,-2.78259 2.08694,40.34746 139.12917,-4.17387 v 17.39114 l 10.43469,0.69565 v 77.21669 h -52.17344 l -0.69565,35.47795 -33.391,-0.6957 c 0,0 4.17388,-5.5651 1.39129,-5.5651 -2.78258,0 -91.1296,2.0869 -91.1296,2.0869 l -0.69565,50.7822 -94.60783,-2.7826 h -11.13034 l 0.69565,-11.1304 -26.43454,-2.0869 0.69564,-15.9998 -102.9555849,-1.3913 z" fill="#e53935" fill-opacity="1" stroke="#e53935" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment1.html')" />
+          <path class="room-rect" d="m 370.08359,1033.7297 -10.43468,-0.6956 0.69564,-9.739 -28.52148,2.0869 -3.47823,-5.5652 -86.95573,0.6957 -1.39129,49.3908 -95.30348,2.087 -12.52163,-2.7826 1.39129,-9.7391 -27.82583,-2.0869 c 0,0 4.17387,-17.3911 1.39129,-17.3911 -2.78258,0 -99.4773556,-0.6957 -99.4773556,-0.6957 l -5.5651668,158.6073 6.9564585,0.6956 -1.3912917,44.5213 102.9555856,-1.3913 0.69565,-41.0431 297.04078,-2.0869 0.69564,-105.7382 50.0865,-0.6956 -1.39129,-57.7386 z" fill="#43a047" fill-opacity="1" stroke="#43a047" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment2.html')" />
+          <path class="room-rect" d="m 545.38635,962.77386 -85.56444,-0.69564 -0.69565,136.34658 -47.99956,-2.7826 -2.78258,103.6513 159.99854,2.0869 1.39129,41.7387 99.47736,1.3913 v -41.7387 l -0.69564,-6.9565 h 5.56516 v -179.4766 l -77.21669,-1.3913 -0.69564,-52.86908 z" fill="#5F1A37" fill-opacity="1" stroke="#5F1A37" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment3.html')" />
+          <path class="room-rect" d="m 582.25558,804.86225 c 0,3.47823 -1.39129,57.73861 -1.39129,57.73861 l -38.26052,-0.69565 v -6.95646 l -138.43353,-0.69564 -2.08694,-102.25994 -41.0431,-0.69565 0.69564,-73.04281 h 43.82569 l -0.69564,-82.78186 178.08534,-0.69564 z" fill="#73C2BE" fill-opacity="1" stroke="#73C2BE" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment5.html')" />
+          <path class="room-rect" d="m 581.55993,557.90797 v 32.69536 l -221.21538,2.78258 V 397.90943 h 43.82569 l 0.69565,-78.60798 h 216.34586 c 0,0 -4.86952,102.25994 -2.08694,114.08592 2.78258,11.82598 2.78258,11.82598 2.78258,11.82598 V 318.6058 l -1.39129,145.38998 -79.99927,2.08694 4.17387,47.30392 38.95617,1.39129 z" fill="#7E5A9B" fill-opacity="1" stroke="#7E5A9B" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment6.html')" />
+          <path class="room-rect" d="m 632.57813,553.38289 c 0,3.93517 0,30.98944 0,30.98944 l 53.61665,-1.47569 V 600.113 l 126.90914,-0.4919 -0.49189,-153.47152 44.27063,0.98379 -0.4919,-85.09799 -39.35167,0.4919 -1.96758,-35.41651 -130.84431,0.4919 v 33.94082 l -59.02751,-0.4919 0.4919,103.79004 -80.67093,-0.4919 -0.98379,49.18959 89.03315,1.47569 z" fill="#496F5D" fill-opacity="1" stroke="#496F5D" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment7.html')" />
+          <path class="room-rect" d="m 634.54571,588.3075 -1.47569,241.02899 181.0177,0.98379 v -56.56803 l 48.20579,1.47569 -1.47568,-63.94647 -46.73011,-1.47569 -0.9838,-108.70899 -126.90914,0.98379 -0.49189,-16.23256 z" fill="#0000FF" fill-opacity="1" stroke="#0000FF" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment8.html')" />
+        </svg>
+      `;
+    case '7':
+      return `
+        <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:all;" viewBox="0 0 1123.2 1587.84">
+          <path class="room-rect" d="m 3.5355339,863.37738 268.7005761,-2.12132 -0.70711,37.47666 140.00715,-2.82843 -0.70711,22.62742
+                                      h 16.97056
+                                      l 1.41421,77.07463 -55.86143,1.41422 -0.70711,37.47664 -33.23402,1.4142
+                                      v -8.4853
+                                      l -93.33809,0.7072
+                                      v 50.2045
+                                      L 145.664,1077.6307
+                                      h -5.65686
+                                      l 0.70711,-14.1421 -30.40559,-0.7071
+                                      v -13.435
+                                      L 4.2426407,1046.518
+                                      Z" fill-opacity="1" stroke="#e53935" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment1.html')" />
+          <path class="room-rect" d="m 5.3033008,1048.9929 105.3589092,-0.7071 1.06066,16.2635 26.51651,1.0606 -0.35356,13.0815 108.54089,1.0607 -0.7071,-50.2046
+                                      h 91.92388
+                                      l 1.06066,7.071 33.94112,-1.7677 0.35356,7.4246 98.64139,-0.3536 1.06066,60.1041 -50.20458,2.1213 0.70711,107.1267 -307.94501,1.4142 0.35356,44.1942 -107.8337854,0.3536 0.3535534,-45.2549
+                                      H 4.2426407
+                                      Z" fill="#43a047" fill-opacity="1" stroke="#43a047" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment2.html')" />
+          <path class="room-rect" d="m 474,968
+                                      c 141,0 141,1 141,1
+                                      v 50
+                                      h 79
+                                      v 192
+                                      h -8
+                                      l 1,49
+                                      H 583
+                                      v -45
+                                      l -164,3 2,-115 52,-2
+                                      z" fill="#5F1A37" fill-opacity="1" stroke="#5F1A37" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment3.html')" />
+          <path class="room-rect" d="m 613,968 1,56 79,-2 1,187
+                                      h 16
+                                      v 44
+                                      l 96,-1
+                                      v -39
+                                      h 172
+                                      l -3,-147 -174,-1
+                                      V 960
+                                      H 625
+                                      l 2,10
+                                      z" fill="#D4E09B" fill-opacity="1" stroke="#D4E09B" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment4.html')" />
+          <path class="room-rect" d="m 568,862
+                                      h 31
+                                      l 1,-270
+                                      H 414
+                                      l -1,88
+                                      h -39
+                                      c 0,0 1,27 1,36 0,9 -1,38 -1,38
+                                      l 39,-2 -1,102 150,-1
+                                      z" fill="#73C2BE" fill-opacity="1" stroke="#73C2BE" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment5.html')" />
+          <path class="room-rect" d="m 599.273,550.48263
+                                        c 0.35355,42.77996 0.35355,42.77996 0.35355,42.77996
+                                        L 369.10974,591.14127 370.52395,483.30748 365,482.5 364.5,388
+                                        H 410
+                                        l 0.5,-84.5 233,-0.5
+                                        v 36
+                                        l -4,-0.5 0.5,116.5 -83.5,-1
+                                        v 55
+                                        l 42.5,-1
+                                        z" fill="#7E5A9B" fill-opacity="1" stroke="#7E5A9B" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment6.html')" />
+          <path class="room-rect" d="m 652.5,578 53.5,-0.5 3,20
+                                    h 127.5
+                                    v -162
+                                    l 42,1.5
+                                    V 351.5
+                                    L 840,350
+                                    l 0.5,-37 -137.5,-1.5 1,35.5 -64.5,-0.5 0.5,107.5 -82.5,1 1.5,52.5
+                                    h 93
+                                    z" fill="#496F5D" fill-opacity="1" stroke="#496F5D" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment7.html')" />
+           <path class="room-rect" d="m 652.5,577 53.5,1.5 1,18
+                                      h 129
+                                      l 1,112.5
+                                      h 50
+                                      l -0.5,67
+                                      h -49
+                                      v 50
+                                      l -185,-1.5
+                                      z" fill="#0000FF" fill-opacity="1" stroke="#0000FF" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment8.html')" />
+       
+        </svg>
+      `;
+    case '8':
+      return `
+        <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:all;" viewBox="0 0 1123.2 1587.84">
+          <path class="room-rect" d="m 3.5355339,863.37738 268.7005761,-2.12132 -0.70711,37.47666 140.00715,-2.82843 -0.70711,22.62742
+                                      h 16.97056
+                                      l 1.41421,77.07463 -55.86143,1.41422 -0.70711,37.47664 -33.23402,1.4142
+                                      v -8.4853
+                                      l -93.33809,0.7072
+                                      v 50.2045
+                                      L 145.664,1077.6307
+                                      h -5.65686
+                                      l 0.70711,-14.1421 -30.40559,-0.7071
+                                      v -13.435
+                                      L 4.2426407,1046.518
+                                      Z" fill-opacity="1" stroke="#e53935" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment1.html')" />
+          <path class="room-rect" d="m 5.3033008,1048.9929 105.3589092,-0.7071 1.06066,16.2635 26.51651,1.0606 -0.35356,13.0815 108.54089,1.0607 -0.7071,-50.2046
+                                      h 91.92388
+                                      l 1.06066,7.071 33.94112,-1.7677 0.35356,7.4246 98.64139,-0.3536 1.06066,60.1041 -50.20458,2.1213 0.70711,107.1267 -307.94501,1.4142 0.35356,44.1942 -107.8337854,0.3536 0.3535534,-45.2549
+                                      H 4.2426407
+                                      Z" fill="#43a047" fill-opacity="1" stroke="#43a047" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment2.html')" />
+          <path class="room-rect" d="m 474,968
+                                      c 141,0 141,1 141,1
+                                      v 50
+                                      h 79
+                                      v 192
+                                      h -8
+                                      l 1,49
+                                      H 583
+                                      v -45
+                                      l -164,3 2,-115 52,-2
+                                      z" fill="#5F1A37" fill-opacity="1" stroke="#5F1A37" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment3.html')" />
+          <path class="room-rect" d="m 613,968 1,56 79,-2 1,187
+                                      h 16
+                                      v 44
+                                      l 96,-1
+                                      v -39
+                                      h 172
+                                      l -3,-147 -174,-1
+                                      V 960
+                                      H 625
+                                      l 2,10
+                                      z" fill="#D4E09B" fill-opacity="1" stroke="#D4E09B" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment4.html')" />
+          <path class="room-rect" d="m 568,862
+                                      h 31
+                                      l 1,-270
+                                      H 414
+                                      l -1,88
+                                      h -39
+                                      c 0,0 1,27 1,36 0,9 -1,38 -1,38
+                                      l 39,-2 -1,102 150,-1
+                                      z" fill="#73C2BE" fill-opacity="1" stroke="#73C2BE" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment5.html')" />
+          <path class="room-rect" d="m 599.273,550.48263
+                                        c 0.35355,42.77996 0.35355,42.77996 0.35355,42.77996
+                                        L 369.10974,591.14127 370.52395,483.30748 365,482.5 364.5,388
+                                        H 410
+                                        l 0.5,-84.5 233,-0.5
+                                        v 36
+                                        l -4,-0.5 0.5,116.5 -83.5,-1
+                                        v 55
+                                        l 42.5,-1
+                                        z" fill="#7E5A9B" fill-opacity="1" stroke="#7E5A9B" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment6.html')" />
+          <path class="room-rect" d="m 652.5,578 53.5,-0.5 3,20
+                                    h 127.5
+                                    v -162
+                                    l 42,1.5
+                                    V 351.5
+                                    L 840,350
+                                    l 0.5,-37 -137.5,-1.5 1,35.5 -64.5,-0.5 0.5,107.5 -82.5,1 1.5,52.5
+                                    h 93
+                                    z" fill="#496F5D" fill-opacity="1" stroke="#496F5D" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment7.html')" />
+           <path class="room-rect" d="m 652.5,577 53.5,1.5 1,18
+                                      h 129
+                                      l 1,112.5
+                                      h 50
+                                      l -0.5,67
+                                      h -49
+                                      v 50
+                                      l -185,-1.5
+                                      z" fill="#0000FF" fill-opacity="1" stroke="#0000FF" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment8.html')" />
+
+        
+        </svg>
+      `;
+    case '9':
+      return `
+        <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:all;" viewBox="0 0 1123.2 1587.84">
+          <path class="room-rect" d="m 3.4782293,861.20957 259.4759007,-2.78259 2.08694,40.34746 139.12917,-4.17387 v 17.39114 l 10.43469,0.69565 v 77.21669 h -52.17344 l -0.69565,35.47795 -33.391,-0.6957 c 0,0 4.17388,-5.5651 1.39129,-5.5651 -2.78258,0 -91.1296,2.0869 -91.1296,2.0869 l -0.69565,50.7822 -94.60783,-2.7826 h -11.13034 l 0.69565,-11.1304 -26.43454,-2.0869 0.69564,-15.9998 -102.9555849,-1.3913 z" fill="#e53935" fill-opacity="1" stroke="#e53935" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment1.html')" />
+          <path class="room-rect" d="m 370.08359,1033.7297 -10.43468,-0.6956 0.69564,-9.739 -28.52148,2.0869 -3.47823,-5.5652 -86.95573,0.6957 -1.39129,49.3908 -95.30348,2.087 -12.52163,-2.7826 1.39129,-9.7391 -27.82583,-2.0869 c 0,0 4.17387,-17.3911 1.39129,-17.3911 -2.78258,0 -99.4773556,-0.6957 -99.4773556,-0.6957 l -5.5651668,158.6073 6.9564585,0.6956 -1.3912917,44.5213 102.9555856,-1.3913 0.69565,-41.0431 297.04078,-2.0869 0.69564,-105.7382 50.0865,-0.6956 -1.39129,-57.7386 z" fill="#43a047" fill-opacity="1" stroke="#43a047" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment2.html')" />
+          <path class="room-rect" d="m 545.38635,962.77386 -85.56444,-0.69564 -0.69565,136.34658 -47.99956,-2.7826 -2.78258,103.6513 159.99854,2.0869 1.39129,41.7387 99.47736,1.3913 v -41.7387 l -0.69564,-6.9565 h 5.56516 v -179.4766 l -77.21669,-1.3913 -0.69564,-52.86908 z" fill="#5F1A37" fill-opacity="1" stroke="#5F1A37" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment3.html')" />
+          <path class="room-rect" d="m 582.25558,804.86225 c 0,3.47823 -1.39129,57.73861 -1.39129,57.73861 l -38.26052,-0.69565 v -6.95646 l -138.43353,-0.69564 -2.08694,-102.25994 -41.0431,-0.69565 0.69564,-73.04281 h 43.82569 l -0.69564,-82.78186 178.08534,-0.69564 z" fill="#73C2BE" fill-opacity="1" stroke="#73C2BE" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment5.html')" />
+          <path class="room-rect" d="m 581.55993,557.90797 v 32.69536 l -221.21538,2.78258 V 397.90943 h 43.82569 l 0.69565,-78.60798 h 216.34586 c 0,0 -4.86952,102.25994 -2.08694,114.08592 2.78258,11.82598 2.78258,11.82598 2.78258,11.82598 V 318.6058 l -1.39129,145.38998 -79.99927,2.08694 4.17387,47.30392 38.95617,1.39129 z" fill="#7E5A9B" fill-opacity="1" stroke="#7E5A9B" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment6.html')" />
+          <path class="room-rect" d="m 632.57813,553.38289 c 0,3.93517 0,30.98944 0,30.98944 l 53.61665,-1.47569 V 600.113 l 126.90914,-0.4919 -0.49189,-153.47152 44.27063,0.98379 -0.4919,-85.09799 -39.35167,0.4919 -1.96758,-35.41651 -130.84431,0.4919 v 33.94082 l -59.02751,-0.4919 0.4919,103.79004 -80.67093,-0.4919 -0.98379,49.18959 89.03315,1.47569 z" fill="#496F5D" fill-opacity="1" stroke="#496F5D" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment7.html')" />
+          <path class="room-rect" d="m 634.54571,588.3075 -1.47569,241.02899 181.0177,0.98379 v -56.56803 l 48.20579,1.47569 -1.47568,-63.94647 -46.73011,-1.47569 -0.9838,-108.70899 -126.90914,0.98379 -0.49189,-16.23256 z" fill="#0000FF" fill-opacity="1" stroke="#0000FF" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment8.html')" />
+        </svg>
+      `;
+    case '10':
+      return `
+        <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:all;" viewBox="0 0 1180.2 1587.84">
+          <path class="room-rect" d="m 3.4782293,861.20957 259.4759007,-2.78259 2.08694,40.34746 139.12917,-4.17387 v 17.39114 l 10.43469,0.69565 v 77.21669 h -52.17344 l -0.69565,35.47795 -33.391,-0.6957 c 0,0 4.17388,-5.5651 1.39129,-5.5651 -2.78258,0 -91.1296,2.0869 -91.1296,2.0869 l -0.69565,50.7822 -94.60783,-2.7826 h -11.13034 l 0.69565,-11.1304 -26.43454,-2.0869 0.69564,-15.9998 -102.9555849,-1.3913 z" fill="#e53935" fill-opacity="1" stroke="#e53935" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment1.html')" />
+          <path class="room-rect" d="m 370.08359,1033.7297 -10.43468,-0.6956 0.69564,-9.739 -28.52148,2.0869 -3.47823,-5.5652 -86.95573,0.6957 -1.39129,49.3908 -95.30348,2.087 -12.52163,-2.7826 1.39129,-9.7391 -27.82583,-2.0869 c 0,0 4.17387,-17.3911 1.39129,-17.3911 -2.78258,0 -99.4773556,-0.6957 -99.4773556,-0.6957 l -5.5651668,158.6073 6.9564585,0.6956 -1.3912917,44.5213 102.9555856,-1.3913 0.69565,-41.0431 297.04078,-2.0869 0.69564,-105.7382 50.0865,-0.6956 -1.39129,-57.7386 z" fill="#43a047" fill-opacity="1" stroke="#43a047" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment2.html')" />
+          <path class="room-rect" d="m 545.38635,962.77386 -85.56444,-0.69564 -0.69565,136.34658 -47.99956,-2.7826 -2.78258,103.6513 159.99854,2.0869 1.39129,41.7387 99.47736,1.3913 v -41.7387 l -0.69564,-6.9565 h 5.56516 v -179.4766 l -77.21669,-1.3913 -0.69564,-52.86908 z" fill="#5F1A37" fill-opacity="1" stroke="#5F1A37" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment3.html')" />
+          <path class="room-rect" d="m 582.25558,804.86225 c 0,3.47823 -1.39129,57.73861 -1.39129,57.73861 l -38.26052,-0.69565 v -6.95646 l -138.43353,-0.69564 -2.08694,-102.25994 -41.0431,-0.69565 0.69564,-73.04281 h 43.82569 l -0.69564,-82.78186 178.08534,-0.69564 z" fill="#73C2BE" fill-opacity="1" stroke="#73C2BE" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment5.html')" />
+          <path class="room-rect" d="m 581.55993,557.90797 v 32.69536 l -221.21538,2.78258 V 397.90943 h 43.82569 l 0.69565,-78.60798 h 216.34586 c 0,0 -4.86952,102.25994 -2.08694,114.08592 2.78258,11.82598 2.78258,11.82598 2.78258,11.82598 V 318.6058 l -1.39129,145.38998 -79.99927,2.08694 4.17387,47.30392 38.95617,1.39129 z" fill="#7E5A9B" fill-opacity="1" stroke="#7E5A9B" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment6.html')" />
+          <path class="room-rect" d="m 632.57813,553.38289 c 0,3.93517 0,30.98944 0,30.98944 l 53.61665,-1.47569 V 600.113 l 126.90914,-0.4919 -0.49189,-153.47152 44.27063,0.98379 -0.4919,-85.09799 -39.35167,0.4919 -1.96758,-35.41651 -130.84431,0.4919 v 33.94082 l -59.02751,-0.4919 0.4919,103.79004 -80.67093,-0.4919 -0.98379,49.18959 89.03315,1.47569 z" fill="#496F5D" fill-opacity="1" stroke="#496F5D" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment7.html')" />
+          <path class="room-rect" d="m 634.54571,588.3075 -1.47569,241.02899 181.0177,0.98379 v -56.56803 l 48.20579,1.47569 -1.47568,-63.94647 -46.73011,-1.47569 -0.9838,-108.70899 -126.90914,0.98379 -0.49189,-16.23256 z" fill="#0000FF" fill-opacity="1" stroke="#0000FF" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment8.html')" />
+        </svg>
+      `;
+    case '11':
+      return `
+        <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:all;" viewBox="0 0 1123.2 1587.84">
+          <path class="room-rect" d="m 3.5355339,863.37738 268.7005761,-2.12132 -0.70711,37.47666 140.00715,-2.82843 -0.70711,22.62742
+                                      h 16.97056
+                                      l 1.41421,77.07463 -55.86143,1.41422 -0.70711,37.47664 -33.23402,1.4142
+                                      v -8.4853
+                                      l -93.33809,0.7072
+                                      v 50.2045
+                                      L 145.664,1077.6307
+                                      h -5.65686
+                                      l 0.70711,-14.1421 -30.40559,-0.7071
+                                      v -13.435
+                                      L 4.2426407,1046.518
+                                      Z" fill-opacity="1" stroke="#e53935" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment1.html')" />
+          <path class="room-rect" d="m 5.3033008,1048.9929 105.3589092,-0.7071 1.06066,16.2635 26.51651,1.0606 -0.35356,13.0815 108.54089,1.0607 -0.7071,-50.2046
+                                      h 91.92388
+                                      l 1.06066,7.071 33.94112,-1.7677 0.35356,7.4246 98.64139,-0.3536 1.06066,60.1041 -50.20458,2.1213 0.70711,107.1267 -307.94501,1.4142 0.35356,44.1942 -107.8337854,0.3536 0.3535534,-45.2549
+                                      H 4.2426407
+                                      Z" fill="#43a047" fill-opacity="1" stroke="#43a047" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment2.html')" />
+          <path class="room-rect" d="m 474,968
+                                      c 141,0 141,1 141,1
+                                      v 50
+                                      h 79
+                                      v 192
+                                      h -8
+                                      l 1,49
+                                      H 583
+                                      v -45
+                                      l -164,3 2,-115 52,-2
+                                      z" fill="#5F1A37" fill-opacity="1" stroke="#5F1A37" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment3.html')" />
+          <path class="room-rect" d="m 613,968 1,56 79,-2 1,187
+                                      h 16
+                                      v 44
+                                      l 96,-1
+                                      v -39
+                                      h 172
+                                      l -3,-147 -174,-1
+                                      V 960
+                                      H 625
+                                      l 2,10
+                                      z" fill="#D4E09B" fill-opacity="1" stroke="#D4E09B" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment4.html')" />
+          <path class="room-rect" d="m 568,862
+                                      h 31
+                                      l 1,-270
+                                      H 414
+                                      l -1,88
+                                      h -39
+                                      c 0,0 1,27 1,36 0,9 -1,38 -1,38
+                                      l 39,-2 -1,102 150,-1
+                                      z" fill="#73C2BE" fill-opacity="1" stroke="#73C2BE" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment5.html')" />
+          <path class="room-rect" d="m 599.273,550.48263
+                                        c 0.35355,42.77996 0.35355,42.77996 0.35355,42.77996
+                                        L 369.10974,591.14127 370.52395,483.30748 365,482.5 364.5,388
+                                        H 410
+                                        l 0.5,-84.5 233,-0.5
+                                        v 36
+                                        l -4,-0.5 0.5,116.5 -83.5,-1
+                                        v 55
+                                        l 42.5,-1
+                                        z" fill="#7E5A9B" fill-opacity="1" stroke="#7E5A9B" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment6.html')" />
+          <path class="room-rect" d="m 652.5,578 53.5,-0.5 3,20
+                                    h 127.5
+                                    v -162
+                                    l 42,1.5
+                                    V 351.5
+                                    L 840,350
+                                    l 0.5,-37 -137.5,-1.5 1,35.5 -64.5,-0.5 0.5,107.5 -82.5,1 1.5,52.5
+                                    h 93
+                                    z" fill="#496F5D" fill-opacity="1" stroke="#496F5D" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment7.html')" />
+           <path class="room-rect" d="m 652.5,577 53.5,1.5 1,18
+                                      h 129
+                                      l 1,112.5
+                                      h 50
+                                      l -0.5,67
+                                      h -49
+                                      v 50
+                                      l -185,-1.5
+                                      z" fill="#0000FF" fill-opacity="1" stroke="#0000FF" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment8.html')" />
+        
+        </svg>
+      `;
+    case '12':
+      return `
+        <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:all;" viewBox="0 0 1123.2 1587.84">
+          <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:all;" viewBox="0 0 1123.2 1587.84">
+          <path class="room-rect" d="m 3.5355339,863.37738 268.7005761,-2.12132 -0.70711,37.47666 140.00715,-2.82843 -0.70711,22.62742
+                                      h 16.97056
+                                      l 1.41421,77.07463 -55.86143,1.41422 -0.70711,37.47664 -33.23402,1.4142
+                                      v -8.4853
+                                      l -93.33809,0.7072
+                                      v 50.2045
+                                      L 145.664,1077.6307
+                                      h -5.65686
+                                      l 0.70711,-14.1421 -30.40559,-0.7071
+                                      v -13.435
+                                      L 4.2426407,1046.518
+                                      Z" fill-opacity="1" stroke="#e53935" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment1.html')" />
+          <path class="room-rect" d="m 5.3033008,1048.9929 105.3589092,-0.7071 1.06066,16.2635 26.51651,1.0606 -0.35356,13.0815 108.54089,1.0607 -0.7071,-50.2046
+                                      h 91.92388
+                                      l 1.06066,7.071 33.94112,-1.7677 0.35356,7.4246 98.64139,-0.3536 1.06066,60.1041 -50.20458,2.1213 0.70711,107.1267 -307.94501,1.4142 0.35356,44.1942 -107.8337854,0.3536 0.3535534,-45.2549
+                                      H 4.2426407
+                                      Z" fill="#43a047" fill-opacity="1" stroke="#43a047" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment2.html')" />
+          <path class="room-rect" d="m 474,968
+                                      c 141,0 141,1 141,1
+                                      v 50
+                                      h 79
+                                      v 192
+                                      h -8
+                                      l 1,49
+                                      H 583
+                                      v -45
+                                      l -164,3 2,-115 52,-2
+                                      z" fill="#5F1A37" fill-opacity="1" stroke="#5F1A37" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment3.html')" />
+          <path class="room-rect" d="m 613,968 1,56 79,-2 1,187
+                                      h 16
+                                      v 44
+                                      l 96,-1
+                                      v -39
+                                      h 172
+                                      l -3,-147 -174,-1
+                                      V 960
+                                      H 625
+                                      l 2,10
+                                      z" fill="#D4E09B" fill-opacity="1" stroke="#D4E09B" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment4.html')" />
+          <path class="room-rect" d="m 568,862
+                                      h 31
+                                      l 1,-270
+                                      H 414
+                                      l -1,88
+                                      h -39
+                                      c 0,0 1,27 1,36 0,9 -1,38 -1,38
+                                      l 39,-2 -1,102 150,-1
+                                      z" fill="#73C2BE" fill-opacity="1" stroke="#73C2BE" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment5.html')" />
+          <path class="room-rect" d="m 599.273,550.48263
+                                        c 0.35355,42.77996 0.35355,42.77996 0.35355,42.77996
+                                        L 369.10974,591.14127 370.52395,483.30748 365,482.5 364.5,388
+                                        H 410
+                                        l 0.5,-84.5 233,-0.5
+                                        v 36
+                                        l -4,-0.5 0.5,116.5 -83.5,-1
+                                        v 55
+                                        l 42.5,-1
+                                        z" fill="#7E5A9B" fill-opacity="1" stroke="#7E5A9B" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment6.html')" />
+          <path class="room-rect" d="m 652.5,578 53.5,-0.5 3,20
+                                    h 127.5
+                                    v -162
+                                    l 42,1.5
+                                    V 351.5
+                                    L 840,350
+                                    l 0.5,-37 -137.5,-1.5 1,35.5 -64.5,-0.5 0.5,107.5 -82.5,1 1.5,52.5
+                                    h 93
+                                    z" fill="#496F5D" fill-opacity="1" stroke="#496F5D" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment7.html')" />
+           <path class="room-rect" d="m 652.5,577 53.5,1.5 1,18
+                                      h 129
+                                      l 1,112.5
+                                      h 50
+                                      l -0.5,67
+                                      h -49
+                                      v 50
+                                      l -185,-1.5
+                                      z" fill="#0000FF" fill-opacity="1" stroke="#0000FF" stroke-width="3" cursor="pointer" onclick="goToApartment('apartment8.html')" />   
+        </svg>
+        </svg>
+      `;
+    default:
+      return '';
+  }
+}
+
+function showFloorModal(floor) {
+  const floorPlans = {
+    'ground-floor': '/assets/images/02-Kati-1_MILA_R_02-08-2023.png',
+    '1': '/assets/images/banesa/katet/Kati1.jpg',
+    '2': '/assets/images/banesa/katet/Kati2.jpg',
+    '3': '/assets/images/banesa/katet/Kati3.jpg',
+    '4': '/assets/images/banesa/katet/Kati4.jpg',
+    '5': '/assets/images/banesa/katet/Kati5.jpg',
+    '6': '/assets/images/banesa/katet/Kati6.jpg',
+    '7': '/assets/images/banesa/katet/Kati7.jpg',
+    '8': '/assets/images/banesa/katet/Kati8.jpg',
+    '9': '/assets/images/banesa/katet/Kati9.jpg',
+    '10': '/assets/images/banesa/katet/Kati10.jpg',
+    '11': '/assets/images/banesa/katet/Kati11.jpg',
+    '12': '/assets/images/banesa/katet/Kati12.jpg',
+    '13': '/assets/images/banesa/katet/Kati13.jpg',
+    '14': '/assets/images/banesa/katet/Kati14.jpg',
+    '15': '/assets/images/banesa/katet/Kati14.jpg',
+    'office': '/assets/images/banesa/banesat/zyre.png'
+  };
+
+  const floorLabelKeys = {
+    'ground-floor': 'map.groundFloor',
+    '1': 'map.floor1',
+    '2': 'map.floor2',
+    '3': 'map.floor3',
+    '4': 'map.floor4',
+    '5': 'map.floor5',
+    '6': 'map.floor6',
+    '7': 'map.floor7',
+    '8': 'map.floor8',
+    '9': 'map.floor9',
+    '10': 'map.floor10',
+    '11': 'map.floor11',
+    '12': 'map.floor12',
+    '13': 'map.floor13',
+    '14': 'map.floor14',
+    '15': 'map.floor15',
+    'office': 'office',
+  };
+
+  let extraNote = '';
+  if (floor === '2' || floor === '3') {
+    extraNote = '<span id="unavailable-note" style="font-size:0.95em;color:#b71c1c;margin-left:10px;vertical-align:middle;"></span>';
+  }
+
+  let viewMoreBtn = '';
+  if (floor === 'office') {
+    viewMoreBtn = `<div style="text-align:center;margin-top:18px;">
+      <a href="apartments/bureauApartment.html" class="view-more-btn" id="viewMoreBtn"></a>
+    </div>`;
+  }
+
+  const planImg = floorPlans[floor];
+  const svgOverlay = getSVGOverlayForFloor(floor);
+  const labelKey = floorLabelKeys[floor] || '';
+
+  const html = planImg
+    ? `<div style="max-width:600px;margin:auto;">
+         <div style="text-align:center;font-size:1.5em;font-weight:600;margin-bottom:12px;"><span id="modalFloorLabel"></span>${extraNote}</div>
+         <div style="position:relative;">
+           <img src="${planImg}" alt="Floor ${floor} Plan" style="width:100%;border-radius:8px;">
+           ${svgOverlay}
+         </div>
+         ${viewMoreBtn}
+       </div>`
+    : `<div style="text-align:center;font-size:1.5em;font-weight:600;margin-bottom:12px;"><span id="modalFloorLabel"></span>${extraNote}</div><p id="noPlanText"></p>`;
+
+  document.getElementById('floorPlanContainer').innerHTML = html;
+  document.getElementById('floorModal').style.display = 'flex';
+
+  // Set translations for modal label, note, button, and no plan text
+  function updateModalTranslations() {
+    if (window.i18next) {
+      const label = i18next.t(labelKey);
+      const labelEl = document.getElementById('modalFloorLabel');
+      if (labelEl) labelEl.textContent = label;
+      if (floor === 'office') {
+        const btn = document.getElementById('viewMoreBtn');
+        if (btn) btn.textContent = i18next.t('cta.viewMore');
+      }
+      const noPlan = document.getElementById('noPlanText');
+      if (noPlan) noPlan.textContent = i18next.t('map.noPlan');
+      if (floor === '2' || floor === '3') {
+        const noteEl = document.getElementById('unavailable-note');
+        if (noteEl) noteEl.textContent = i18next.t('map.unavailable');
+      }
+    }
+  }
+  updateModalTranslations();
+
+  // Listen for language change and update modal translations
+  if (window.i18next) {
+    i18next.on('languageChanged', updateModalTranslations);
+  }
+}
+    document.getElementById('modalClose').onclick = function() {
+      document.getElementById('floorModal').style.display = 'none';
+      document.getElementById('floorPlanContainer').innerHTML = '';
+    };
+    // Close modal on background click
+    document.getElementById('floorModal').onclick = function(e) {
+      if (e.target === this) {
+        this.style.display = 'none';
+        document.getElementById('floorPlanContainer').innerHTML = '';
+      }
+    };
+
+    function goToApartment(page) {
+      window.location.href = 'apartments/' + page;
+    }
+  </script>
+</body>
+</html> 

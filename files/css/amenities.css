@@ -1,0 +1,329 @@
+body {
+  background: linear-gradient(135deg, #f8f6f8 0%, #f3e7e9 100%);
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Dedicated Amenity Section Styles */
+.amenity-detail {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(134,35,32,0.08);
+  margin: 48px auto;
+  max-width: 1100px;
+  padding: 32px 24px;
+  gap: 40px;
+  transition: box-shadow 0.3s, transform 0.3s;
+  border-left: 8px solid #862320;
+  position: relative;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 0.8s forwards;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Remove scattered/alternating effect for desktop */
+.amenity-detail:nth-of-type(even),
+.amenity-detail:nth-of-type(odd),
+.amenity-detail:nth-of-type(3n),
+.amenity-detail:nth-of-type(4n) {
+  flex-direction: row;
+  margin-top: 48px;
+  margin-bottom: 48px;
+  margin-left: 0;
+  margin-right: 0;
+  transform: translateY(40px);
+}
+
+.amenity-detail:hover {
+  box-shadow: 0 12px 36px rgba(134,35,32,0.18);
+  transform: translateY(-8px) scale(1.015);
+}
+
+/* Vertical divider in the middle */
+.amenity-detail-media {
+  flex: 1 1 340px;
+  max-width: 420px;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.amenity-detail-media::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: -20px;
+  top: 10%;
+  height: 80%;
+  width: 2px;
+  background: linear-gradient(180deg, #f3e7e9 0%, #862320 50%, #f3e7e9 100%);
+  border-radius: 2px;
+}
+
+.amenity-detail-media img,
+.amenity-detail-media video {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  object-fit: cover;
+  border: 2px solid #f3e7e9;
+}
+.amenity-detail-info {
+  flex: 2 1 340px;
+  min-width: 220px;
+  padding: 0 16px;
+}
+.amenity-detail-info h3 {
+  font-size: 2rem;
+  color: #862320;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: 1px;
+}
+.amenity-detail-info .icon {
+  font-size: 2.2rem;
+  filter: drop-shadow(0 2px 4px #f3e7e9);
+}
+.amenity-detail-info p {
+  font-size: 1.15rem;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 0;
+  background: linear-gradient(90deg, #fff 80%, #f3e7e9 100%);
+  padding: 8px 0 8px 0;
+  border-radius: 8px;
+}
+
+/* Decorative divider between sections */
+.amenity-detail + .amenity-detail::before {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #862320 0%, #f3e7e9 100%);
+  border-radius: 2px;
+  margin: 0 auto 32px auto;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .amenity-detail {
+    flex-direction: column !important;
+    padding: 24px 8px;
+    gap: 24px;
+    border-left: 0;
+    border-top: 8px solid #862320;
+    margin: 32px 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: none !important;
+  }
+  .amenity-detail-media, .amenity-detail-info {
+    max-width: 98vw;
+    min-width: 0;
+    padding: 0;
+  }
+  .amenity-detail-info h3 {
+    font-size: 1.3rem;
+  }
+  .amenity-detail-media::after {
+    display: none;
+  }
+}
+
+/* Amenities slider specific styles for amenities page */
+.amenities {
+  padding: 60px 20px;
+  text-align: center;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.amenities-slider-wrapper {
+  position: relative;
+  margin: 40px auto 0 auto;
+  overflow: hidden;
+  max-width: 900px;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.amenities-slider {
+  display: flex;
+  gap: 32px;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  will-change: transform;
+}
+
+.amenity-card {
+  flex: 0 0 33.3333%;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.amenity-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 32px rgba(134,35,32,0.16);
+}
+
+.amenity-video {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+  background: #eee;
+}
+
+.amenity-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #862320;
+  justify-content: center;
+}
+
+.amenity-info .icon {
+  font-size: 1.5rem;
+}
+
+.amenities-arrow {
+  background: #862320;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(134,35,32,0.15);
+  transition: background 0.2s, transform 0.2s;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.amenities-arrow:hover {
+  background: #a02a26;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.amenities-arrow.left {
+  left: 0;
+}
+
+.amenities-arrow.right {
+  right: 0;
+}
+
+.amenities-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.amenities-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #eee;
+  border: 2px solid #862320;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+}
+
+.amenities-dot.active {
+  background: #862320;
+  border-color: #862320;
+}
+
+/* Responsive styles for amenities slider */
+@media (max-width: 1000px) {
+  .amenity-card {
+    flex: 0 0 50%;
+  }
+  .amenities-slider {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .amenity-card {
+    flex: 0 0 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+  .amenities-slider {
+    gap: 10px;
+    max-width: 100%;
+    width: 100%;
+  }
+  .amenities-slider-wrapper {
+    max-width: 100%;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 20px;
+    overflow: hidden;
+  }
+  .amenity-video {
+    height: 140px;
+  }
+  .amenities-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .amenities {
+    padding: 40px 10px;
+  }
+  .amenities-slider-wrapper {
+    padding: 0 10px;
+  }
+  .amenity-card {
+    flex: 0 0 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+  .amenities-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+} 

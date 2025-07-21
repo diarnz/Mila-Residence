@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apartments | Mila Residence</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Archivo+Black&family=DM+Serif+Display&family=Gasoek+One&family=Kalnia:wght@363&family=LXGW+Marker+Gothic&family=Pacifico&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/amenities.css" />
+  <link rel="stylesheet" href="css/apartments.css" />
+  <!-- Favicon - Multiple sizes for better compatibility -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logoupd1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/logoupd1.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/logoupd1.png">
+  <link rel="shortcut icon" href="/assets/images/logoupd1.png">
+</head>
+<body style="overflow-x: hidden;">
+  <header class="navbar">
+    <div class="logo">
+      <img src="/assets/images/logoupdBlack.png" alt="Mila Residence Logo" id="navbar-logo" />
+      <span>Mila Residence</span>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="nav-menu" id="nav-menu">
+      <ul>
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="interactive-map.html" data-i18n="nav.complex">Our Complex</a></li>
+        <li><a href="apartments.html" class="active" data-i18n="nav.apartments">Apartments</a></li>
+        <li><a href="amenities.html" data-i18n="nav.amenities">Amenities</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact Us</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+      <button class="lang-btn" data-lang="en" data-i18n="lang.en">English</button>
+      <button class="lang-btn" data-lang="sq" data-i18n="lang.sq">Shqip</button>
+    </div>
+  </header>
+  <div class="main-content">
+    <section class="hero hero-apartments" style="position: relative; width: 100vw; min-width: 100vw; height: 52vh; min-height: 340px; display: flex; align-items: center; justify-content: center; flex-direction: column; overflow: hidden; padding: 0; border: none; margin: 0 auto;">
+      <div style="position: absolute; inset: 0; width: 100vw; min-width: 100vw; background: url('/assets/images/01a-MILA-Residence_26-09-2024.jpg') center/cover no-repeat; z-index: 1;"></div>
+      <div style="position: absolute; inset: 0; width: 100vw; min-width: 100vw; background: linear-gradient(120deg, #4e1311cc 0%, #00000055 100%); z-index: 2;"></div>
+      <div style="position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+        <img src="/assets/images/logoupdBlack.png" alt="Mila Residence Logo" style="height: 130px; width: auto; margin-bottom: 28px; filter: drop-shadow(0 4px 16px #86232022); opacity: 0.95;" class="animate-scale-in">
+        <h1 style="color: #fff; font-size: 3rem; font-weight: 800; text-shadow: 2px 4px 18px #86232099, 0 2px 8px #0008; letter-spacing: 2px; margin-bottom: 10px; text-align: center;" class="animate-fade-in-up" data-i18n="apartment.explore">Discover Your Perfect Apartment</h1>
+        <p style="color: #f3e7e9; font-size: 1.25rem; margin-bottom: 28px; max-width: 540px; text-align: center; text-shadow: 0 2px 8px #86232055;" class="animate-fade-in-up" data-i18n="apartment.1.desc">Modern, spacious, and designed for comfort—find the ideal home for your lifestyle at Mila Residence.</p>
+      </div>
+    </section>
+    <section class="apartment-layout" style="padding: 60px 0 40px 0; background: #fff;">
+      <div class="apartment-layout-container" style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; margin-bottom: 32px;">
+          <h4 class="subheading scroll-animate" data-i18n="apartment.layouts">Apartment Layouts</h4>
+          <h2 class="title scroll-animate" style="margin: 0;" data-i18n="apartment.explore">Explore Our Apartment Types</h2>
+        </div>
+      <a href="apartments/apartment1.html" style="text-decoration: none;">
+        <div class="apartment-grid stagger-animation" style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; margin-top: 32px;">
+          <div class="apartment-card hover-lift" style="background: #fafbfc; border-radius: 18px; box-shadow: 0 4px 24px rgba(134,35,32,0.08); max-width: 320px; min-width: 260px; flex: 1 1 300px; display: flex; flex-direction: column; align-items: center; padding: 24px 18px 18px 18px; transition: box-shadow 0.3s, transform 0.3s;">
+            <img src="/assets/images/banesa/banesat/banesa-1.png" alt="Apartment 1 Layout" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 18px;" loading="lazy" />
+            <h3 style="color: #862320; font-size: 1.3rem; margin-bottom: 10px; font-weight: 700;" data-i18n="apartment.apt1">Apt 1</h3>
+            <p style="color: #555; font-size: 1rem;" data-i18n="apartment.1.desc">Spacious 3-bedroom apartment with open living area and balcony.</p>
+          </div>
+        </a>
+        <a href="apartments/apartment2.html" style="text-decoration: none;">
+          <div class="apartment-card hover-lift" style="background: #fafbfc; border-radius: 18px; box-shadow: 0 4px 24px rgba(134,35,32,0.08); max-width: 320px; min-width: 260px; flex: 1 1 300px; display: flex; flex-direction: column; align-items: center; padding: 24px 18px 18px 18px; transition: box-shadow 0.3s, transform 0.3s;">
+            <img src="/assets/images/banesa/banesat/banesa-2.png" alt="Apartment 2 Layout" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 18px;" loading="lazy" />
+            <h3 style="color: #862320; font-size: 1.3rem; margin-bottom: 10px; font-weight: 700;" data-i18n="apartment.apt2">Apt 2</h3>
+            <p style="color: #555; font-size: 1rem;" data-i18n="apartment.2.desc">Family-sized 3-bedroom apartment, perfect for families.</p>
+          </div>
+        </a>
+        <a href="apartments/apartment3.html" style="text-decoration: none;">
+          <div class="apartment-card hover-lift" style="background: #fafbfc; border-radius: 18px; box-shadow: 0 4px 24px rgba(134,35,32,0.08); max-width: 320px; min-width: 260px; flex: 1 1 300px; display: flex; flex-direction: column; align-items: center; padding: 24px 18px 18px 18px; transition: box-shadow 0.3s, transform 0.3s;">
+            <img src="/assets/images/banesa/banesat/banesa-3.png" alt="Apartment 3 Layout" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 18px;" loading="lazy" />
+            <h3 style="color: #862320; font-size: 1.3rem; margin-bottom: 10px; font-weight: 700;" data-i18n="apartment.apt3">Apt 3</h3>
+            <p style="color: #555; font-size: 1rem;" data-i18n="apartment.3.desc">Modern 2-bedroom apartment with a spacious kitchen.</p>
+          </div>
+        </a>
+        <a href="apartments/apartment4.html" style="text-decoration: none;">  
+          <div class="apartment-card hover-lift" style="background: #fafbfc; border-radius: 18px; box-shadow: 0 4px 24px rgba(134,35,32,0.08); max-width: 320px; min-width: 260px; flex: 1 1 300px; display: flex; flex-direction: column; align-items: center; padding: 24px 18px 18px 18px; transition: box-shadow 0.3s, transform 0.3s;">
+            <img src="/assets/images/banesa/banesat/banesa-4.png" alt="Apartment 4 Layout" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 18px;" loading="lazy" />
+            <h3 style="color: #862320; font-size: 1.3rem; margin-bottom: 10px; font-weight: 700;" data-i18n="apartment.apt4">Apt 4</h3>
+            <p style="color: #555; font-size: 1rem;" data-i18n="apartment.4.desc">2-bedroom apartment with a great household design.</p>
+          </div>
+        </a>
+        <a href="apartments/apartment5.html" style="text-decoration: none;">
+          <div class="apartment-card hover-lift" style="background: #fafbfc; border-radius: 18px; box-shadow: 0 4px 24px rgba(134,35,32,0.08); max-width: 320px; min-width: 260px; flex: 1 1 300px; display: flex; flex-direction: column; align-items: center; padding: 24px 18px 18px 18px; transition: box-shadow 0.3s, transform 0.3s;">
+              <img src="/assets/images/banesa/banesat/banesa-5.png" alt="Apartment 1 Layout" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 18px;" loading="lazy" />
+              <h3 style="color: #862320; font-size: 1.3rem; margin-bottom: 10px; font-weight: 700;" data-i18n="apartment.apt5">Apt 5</h3>
+              <p style="color: #555; font-size: 1rem;" data-i18n="apartment.5.desc">Spacious 2-bedroom apartment with open living area and balcony.</p>
+            </div>
+          </a>
+          <a href="apartments/apartment6.html" style="text-decoration: none;">
+            <div class="apartment-card hover-lift" style="background: #fafbfc; border-radius: 18px; box-shadow: 0 4px 24px rgba(134,35,32,0.08); max-width: 320px; min-width: 260px; flex: 1 1 300px; display: flex; flex-direction: column; align-items: center; padding: 24px 18px 18px 18px; transition: box-shadow 0.3s, transform 0.3s;">
+              <img src="/assets/images/banesa/banesat/banesa-6.png" alt="Apartment 2 Layout" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 18px;" loading="lazy" />
+                <h3 style="color: #862320; font-size: 1.3rem; margin-bottom: 10px; font-weight: 700;" data-i18n="apartment.apt6">Apt 6</h3>
+              <p style="color: #555; font-size: 1rem;" data-i18n="apartment.6.desc">Modern 3-bedroom apartment, perfect for families.</p>
+            </div>
+          </a>
+          <a href="apartments/apartment7.html" style="text-decoration: none;">
+            <div class="apartment-card hover-lift" style="background: #fafbfc; border-radius: 18px; box-shadow: 0 4px 24px rgba(134,35,32,0.08); max-width: 320px; min-width: 260px; flex: 1 1 300px; display: flex; flex-direction: column; align-items: center; padding: 24px 18px 18px 18px; transition: box-shadow 0.3s, transform 0.3s;">
+              <img src="/assets/images/banesa/banesat/banesa-7.png" alt="Apartment 3 Layout" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 18px;" loading="lazy" />
+              <h3 style="color: #862320; font-size: 1.3rem; margin-bottom: 10px; font-weight: 700;" data-i18n="apartment.apt7">Apt 7</h3>
+              <p style="color: #555; font-size: 1rem;" data-i18n="apartment.7.desc">2-bedroom apartment with a great spacious design.</p>
+            </div>
+          </a>
+          <a href="apartments/apartment8.html" style="text-decoration: none;">
+            <div class="apartment-card hover-lift" style="background: #fafbfc; border-radius: 18px; box-shadow: 0 4px 24px rgba(134,35,32,0.08); max-width: 320px; min-width: 260px; flex: 1 1 300px; display: flex; flex-direction: column; align-items: center; padding: 24px 18px 18px 18px; transition: box-shadow 0.3s, transform 0.3s;">
+              <img src="/assets/images/banesa/banesat/banesa-8.png" alt="Apartment 4 Layout" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 18px;" loading="lazy" />
+              <h3 style="color: #862320; font-size: 1.3rem; margin-bottom: 10px; font-weight: 700;" data-i18n="apartment.apt8">Apt 8</h3>
+              <p style="color: #555; font-size: 1rem;" data-i18n="apartment.8.desc">2-bedroom apartment, perfect for couples.</p>
+            </div>
+          </a>
+          <a href="apartments/bureauApartment.html" style="text-decoration: none;">
+            <div class="apartment-card hover-lift" style="background: #fafbfc; border-radius: 18px; box-shadow: 0 4px 24px rgba(134,35,32,0.08); max-width: 320px; min-width: 260px; flex: 1 1 300px; display: flex; flex-direction: column; align-items: center; padding: 24px 18px 18px 18px; transition: box-shadow 0.3s, transform 0.3s;">
+              <img src="/assets/images/banesa/banesat/zyre.png" alt="Apartment 4 Layout" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 18px;" loading="lazy" />
+              <h3 style="color: #862320; font-size: 1.3rem; margin-bottom: 10px; font-weight: 700;" data-i18n="office">Office</h3>
+              <p style="color: #555; font-size: 1rem;" data-i18n="office.desc">Big spacious office perfect for any kind of work.</p>
+            </div>
+          </a>
+          </div>
+        </div>
+      </section>
+    <section class="cta scroll-animate" style="text-align:center; margin:60px 0;">
+      <h2 style="color:#862320; font-size:2rem;" class="animate-fade-in-up" data-i18n="cta.findApartment">Ready to Find Your Dream Apartment?</h2>
+      <p style="margin:20px 0 30px 0;" class="animate-fade-in-up" data-i18n="cta.apartmentDesc">Contact us today to schedule a tour or learn more about our available apartments and offers.</p>
+      <a href="#" class="contact-btn animate-scale-in hover-scale" data-i18n="cta.contactUs">Contact Us</a>
+      <div style="margin-top:32px;">
+        <a href="index.html" class="contact-btn animate-scale-in hover-scale" style="background:#fff; color:#862320; border:2px solid #862320; margin-right:12px;" data-i18n="cta.backHome">Back to Home</a>
+        <a href="amenities.html" class="contact-btn animate-scale-in hover-scale" style="background:#fff; color:#862320; border:2px solid #862320;" data-i18n="cta.seeAmenities">See Amenities</a>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <div class="footer-links">
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="interactive-map.html" data-i18n="nav.complex">Our Complex</a>
+      <a href="apartments.html" data-i18n="nav.apartments">Apartments</a>
+      <a href="amenities.html" data-i18n="nav.amenities">Amenities</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact Us</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.facebook.com/mila.residence.2025" target="_blank" aria-label="Facebook">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg>
+      </a>
+      <a href="https://www.instagram.com/mila.residence05" target="_blank" aria-label="Instagram">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.069 1.646.069 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.069-4.85.069s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.515 2.497 5.782 2.225 7.148 2.163 8.414 2.105 8.794 2.163 12 2.163zm0-2.163C8.741 0 8.332.012 7.052.07 5.771.128 4.659.334 3.678 1.315c-.98.98-1.187 2.092-1.245 3.373C2.012 5.668 2 6.077 2 12c0 5.923.012 6.332.07 7.612.058 1.281.265 2.393 1.245 3.373.98.98 2.092 1.187 3.373 1.245C8.332 23.988 8.741 24 12 24s3.668-.012 4.948-.07c1.281-.058 2.393-.265 3.373-1.245.98-.98 1.187-2.092 1.245-3.373.058-1.28.07-1.689.07-7.612 0-5.923-.012-6.332-.07-7.612-.058-1.281-.265-2.393-1.245-3.373-.98-.98-2.092-1.187-3.373-1.245C15.668.012 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm7.2-11.162a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+      </a>
+      <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.849-3.037-1.851 0-2.132 1.445-2.132 2.939v5.667H9.358V9h3.414v1.561h.049c.476-.899 1.637-1.849 3.37-1.849 3.602 0 4.267 2.368 4.267 5.455v6.285zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM6.814 20.452H3.861V9h2.953v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.723v20.549C0 23.229.792 24 1.771 24h20.451C23.2 24 24 23.229 24 22.271V1.723C24 .771 23.2 0 22.225 0z"/></svg>
+      </a>
+    </div>
+    <div class="footer-copyright" data-i18n="footer.copyright">&copy; 2025 Mila Residence. All rights reserved.</div>
+  </footer>
+  <!-- i18next Library -->
+  <script src="https://cdn.jsdelivr.net/npm/i18next@23.7.16/dist/umd/i18next.min.js"></script>
+  
+  <!-- Translation files -->
+  <script src="js/translations.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html> 

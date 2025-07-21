@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mila Residence</title>
+  <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Archivo+Black&family=DM+Serif+Display&family=Gasoek+One&family=Kalnia:wght@363&family=LXGW+Marker+Gothic&family=Pacifico&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Favicon - Multiple sizes for better compatibility -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logoupd1.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/logoupd1.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/logoupd1.png">
+    <link rel="shortcut icon" href="/assets/images/logoupd1.png">
+
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="/assets/images/logoupdBlack.png" alt="Mila Residence Logo" id="navbar-logo" />
+      <span>Mila Residence</span>
+    </div>
+    
+    <!-- Hamburger Menu Button -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    
+    <nav class="nav-menu" id="nav-menu">
+      <ul>
+        <li><a href="index.html" class="active" data-i18n="nav.home">Home</a></li>
+        <li><a href="interactive-map.html" data-i18n="nav.complex">Our Complex</a></li>
+        <li><a href="apartments.html" data-i18n="nav.apartments">Apartments</a></li>
+        <li><a href="amenities.html" data-i18n="nav.amenities">Amenities</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact Us</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+      <button class="lang-btn" data-lang="en" data-i18n="lang.en">English</button>
+      <button class="lang-btn" data-lang="sq" data-i18n="lang.sq">Shqip</button>
+      <!-- Debug button (goes here) - remove after testing -->
+    </div>
+    
+    <!-- Can be used for later
+    <div class="contact">
+      <span>📞 (+1) 840 841 25 69</span>
+      <a href="#" class="contact-btn">Contact Us</a>
+    </div>
+ 
+  -->
+ </header>
+<div class="blur-overlay"></div>
+
+<div class="main-content">
+  <section class="hero">
+    <div class="hero-video">
+      <video autoplay muted loop loading="eager">
+        <source src="/assets/videos/mila-10-korrik.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-overlay"></div>
+    </div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="animate-fade-in-up" data-i18n="hero.title">Find Your Dream Home in The Heart of The City</h1>
+        <a href="interactive-map.html" class="explore-btn animate-scale-in hover-scale" data-i18n="hero.explore">Let's Explore</a>
+        
+        <div class="stats-box stagger-animation">
+          <div class="stat-item hover-lift">
+            <div class="stat-number">100</div>
+            <div class="stat-label" data-i18n="hero.stats.apartments">Apartments</div>
+          </div>
+          <div class="stat-item hover-lift">
+            <div class="stat-number">92</div>
+            <div class="stat-label" data-i18n="hero.stats.parking">Parking Spaces</div>
+          </div>
+          <div class="stat-item hover-lift">
+            <div class="stat-number">2028</div>
+            <div class="stat-label" data-i18n="hero.stats.space">Completion</div>
+          </div>
+          <div class="stat-item hover-lift">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label" data-i18n="hero.stats.security">Security</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-images">
+        <div class="image-container animate-fade-in-right hover-lift">
+          <img src="/assets/images/01-MILA-Residence_20-07-2024.png" alt="Mila Residence Building Front" class="hero-image image-1" loading="lazy" />
+          <img src="/assets/images/03-MILA-Residence_26-09-2024.jpg" alt="Mila Residence Building Back" class="hero-image image-2" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="entry">
+    <div class="entry-content">
+      <!-- Image Slider on the left -->
+      <div class="image-slider animate-fade-in-left">
+        <div class="slider-container">
+          <div class="image-slide active">
+            <img src="/assets/images/10_10-Photo.jpg" alt="Mila Residence View 1" loading="lazy">
+          </div>
+          <div class="image-slide">
+            <img src="/assets/images/10_3-Photo.jpg" alt="Mila Residence View 2" loading="lazy">
+          </div>
+          <div class="image-slide">
+            <img src="/assets/images/10_1-Photo.jpg" alt="Mila Residence View 3" loading="lazy">
+          </div>
+          <div class="image-slide">
+            <img src="/assets/images/10_4-Photo.jpg" alt="Mila Residence View 4" loading="lazy">
+          </div>
+        </div>
+        
+        <!-- Navigation arrows -->
+        <button class="slider-btn prev-btn hover-scale" onclick="changeImageSlide(-1)">❮</button>
+        <button class="slider-btn next-btn hover-scale" onclick="changeImageSlide(1)">❯</button>
+        
+        <!-- Dots indicator -->
+        <div class="slider-dots">
+          <span class="dot active" onclick="currentImageSlide(1)"></span>
+          <span class="dot" onclick="currentImageSlide(2)"></span>
+          <span class="dot" onclick="currentImageSlide(3)"></span>
+          <span class="dot" onclick="currentImageSlide(4)"></span>
+        </div>
+      </div>
+
+      <!-- Text content on the right -->
+      <div class="entry-text">
+        <h2 class="animate-fade-in-up" data-i18n="entry.welcome">Welcome to Mila Residence</h2>
+        <p class="animate-fade-in-up" data-i18n="entry.description">One of the most exclusive and luxurious residential complexes in Ferizaj, Mila Residence is a true masterpiece of modern architecture and design. Located in the heart of the city, our complex offers a unique blend of comfort, convenience, and elegance.</p>
+        <a href="apartments.html" class="read-more-btn animate-scale-in hover-scale" data-i18n="entry.readMore">Read More</a>
+      </div>
+    </div>
+  </section>
+  <section class="photo-tour">
+    <div class="container">
+      <div class="photo-tour-header scroll-animate" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;">
+        <span class="photo-tour-subtitle animate-slide-in-top" data-i18n="photo.gallery">Gallery</span>
+        <h2 class="photo-tour-title animate-fade-in-up" data-i18n="photo.tour">Photo Tour</h2>
+      </div>
+
+      <div class="photo-slider scroll-animate">
+        <button class="slider-btn prev-btn hover-scale" onclick="changePhotoSlide(-1)">❮</button>
+        <div class="photo-slide-container">
+          <div class="slide active">
+            <video src="/assets/videos/10_K_3.mp4" autoplay muted loop playsinline class="photo-slide-media" loading="lazy"></video>
+          </div>
+          <div class="slide">
+            <img src="/assets/images/10_1-Photo.jpg" alt="Skyline View" class="photo-slide-media" loading="lazy" />
+          </div>
+          <div class="slide">
+            <img src="/assets/images/10_2-Photo.jpg" alt="Modern Building" class="photo-slide-media" loading="lazy" />
+          </div>
+          <div class="slide">
+            <img src="/assets/images/10_3-Photo.jpg" alt="Interior View" class="photo-slide-media" loading="lazy" />
+          </div>
+          <div class="slide">
+            <img src="/assets/images/10_4-Photo.jpg" alt="Interior View" class="photo-slide-media" loading="lazy" />
+          </div>
+          <div class="slide">
+            <img src="/assets/images/10_5-Photo.jpg" alt="Interior View" class="photo-slide-media" loading="lazy" />
+          </div>
+          <div class="slide">
+            <img src="/assets/images/10_6-Photo.jpg" alt="Interior View" class="photo-slide-media" loading="lazy" />
+          </div>
+          <div class="slide">
+            <img src="/assets/images/10_7-Photo.jpg" alt="Interior View" class="photo-slide-media" loading="lazy" />
+          </div>
+          <div class="slide">
+            <img src="/assets/images/10_8-Photo.jpg" alt="Interior View" class="photo-slide-media" loading="lazy" />
+          </div>
+          <div class="slide">
+            <img src="/assets/images/10_9-Photo.jpg" alt="Interior View" class="photo-slide-media" loading="lazy" />
+          </div>
+          <div class="slide">
+            <img src="/assets/images/10_10-Photo.jpg" alt="Interior View" class="photo-slide-media" loading="lazy" />
+          </div>
+        </div>
+        <button class="slider-btn next-btn hover-scale" onclick="changePhotoSlide(1)">❯</button>
+        <div class="slider-dots">
+          <span class="dot active" onclick="currentPhotoSlide(1)"></span>
+          <span class="dot" onclick="currentPhotoSlide(2)"></span>
+          <span class="dot" onclick="currentPhotoSlide(3)"></span>
+          <span class="dot" onclick="currentPhotoSlide(4)"></span>
+          <span class="dot" onclick="currentPhotoSlide(5)"></span>
+          <span class="dot" onclick="currentPhotoSlide(6)"></span>
+          <span class="dot" onclick="currentPhotoSlide(7)"></span>
+          <span class="dot" onclick="currentPhotoSlide(8)"></span>
+          <span class="dot" onclick="currentPhotoSlide(9)"></span>
+          <span class="dot" onclick="currentPhotoSlide(10)"></span>
+          <span class="dot" onclick="currentPhotoSlide(11)"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="apartment-layout">
+    <div class="apartment-layout-container">
+      <div class="apartment-layout-header scroll-animate" style="align-items: center; justify-content: center; display: flex; flex-direction: column; gap: 12px; margin-bottom: 12px;">
+        <h4 class="subheading animate-slide-in-top" data-i18n="apartment.layouts">Apartment Layouts</h4>
+        <h2 class="title animate-fade-in-up" data-i18n="apartment.explore">Explore Our Apartment Types</h2>
+      </div>
+      <div class="apartment-buttons-wrapper">
+        <button class="apartment-btn-page-btn prev-btn hover-scale" onclick="changeApartmentButtonPage(-1)">❮</button>
+        <div class="apartment-buttons stagger-animation">
+          <button class="apartment-btn active hover-scale" data-apartment="1" data-i18n="apartment.apt1">Apt 1</button>
+          <button class="apartment-btn hover-scale" data-apartment="2" data-i18n="apartment.apt2">Apt 2</button>
+          <button class="apartment-btn hover-scale" data-apartment="3" data-i18n="apartment.apt3">Apt 3</button>
+          <button class="apartment-btn hover-scale" data-apartment="4" data-i18n="apartment.apt4">Apt 4</button>
+          <button class="apartment-btn hover-scale" data-apartment="5" data-i18n="apartment.apt5">Apt 5</button>
+          <button class="apartment-btn hover-scale" data-apartment="6" data-i18n="apartment.apt6">Apt 6</button>
+          <button class="apartment-btn hover-scale" data-apartment="7" data-i18n="apartment.apt7">Apt 7</button>
+          <button class="apartment-btn hover-scale" data-apartment="8" data-i18n="apartment.apt8">Apt 8</button>
+        </div>
+        <button class="apartment-btn-page-btn next-btn hover-scale" onclick="changeApartmentButtonPage(1)">❯</button>
+      </div>
+      <a href="apartments/apartment1.html" class="link-apt">
+        <div class="apartment-content scroll-animate">
+          <div class="apartment-layout-item active hover-lift" data-apartment="1">
+            <img src="/assets/images/banesa/banesat/banesa-1.png" alt="Apartment 1 Layout" class="apartment-layout-img" loading="lazy" />
+            <p data-i18n="apartment.1.desc">Spacious 3-bedroom apartment with open living area and balcony.</p>
+          </div>
+        </a>
+        <a href="apartments/apartment2.html" class="link-apt">
+          <div class="apartment-layout-item hover-lift" data-apartment="2">
+            <img src="/assets/images/banesa/banesat/banesa-2.png" alt="Apartment 2 Layout" class="apartment-layout-img" loading="lazy" />
+            <p data-i18n="apartment.2.desc">Family-sized 3-bedroom apartment, perfect for families.</p>
+          </div>
+        </a>
+        <a href="apartments/apartment2.html" class="link-apt">
+          <div class="apartment-layout-item hover-lift" data-apartment="3">
+            <img src="/assets/images/banesa/banesat/banesa-3.png" alt="Apartment 3 Layout" class="apartment-layout-img" loading="lazy" />
+            <p data-i18n="apartment.3.desc">Modern 2-bedroom apartment with a spacious kitchen.</p>
+          </div>
+        </a>
+        <a href="apartments/apartment2.html" class="link-apt">
+          <div class="apartment-layout-item hover-lift" data-apartment="4">
+            <img src="/assets/images/banesa/banesat/banesa-4.png" alt="Apartment 4 Layout" class="apartment-layout-img" loading="lazy" />
+            <p data-i18n="apartment.4.desc">2-bedroom apartment with a great spacious design.</p>
+          </div>
+        </a>
+        <a href="apartments/apartment2.html" class="link-apt">
+          <div class="apartment-layout-item hover-lift" data-apartment="5">
+            <img src="/assets/images/banesa/banesat/banesa-5.png" alt="Apartment 5 Layout" class="apartment-layout-img" loading="lazy" />
+            <p data-i18n="apartment.5.desc">Spacious 2-bedroom apartment with open living area and balcony.</p>
+          </div>
+        </a>
+        <a href="apartments/apartment2.html" class="link-apt">
+          <div class="apartment-layout-item hover-lift" data-apartment="6">
+            <img src="/assets/images/banesa/banesat/banesa-6.png" alt="Apartment 6 Layout" class="apartment-layout-img" loading="lazy" />
+            <p data-i18n="apartment.6.desc">Modern 3-bedroom apartment, perfect for families.</p>
+          </div>
+        </a>
+        <a href="apartments/apartment2.html" class="link-apt">
+          <div class="apartment-layout-item hover-lift" data-apartment="7">
+            <img src="/assets/images/banesa/banesat/banesa-7.png" alt="Apartment 7 Layout" class="apartment-layout-img" loading="lazy" />
+            <p data-i18n="apartment.7.desc">2-bedroom apartment with a great spacious design.</p>
+          </div>
+        </a>
+        <a href="apartments/apartment2.html" class="link-apt">
+          <div class="apartment-layout-item hover-lift" data-apartment="8">
+            <img src="/assets/images/banesa/banesat/banesa-8.png" alt="Apartment 8 Layout" class="apartment-layout-img" loading="lazy" />
+            <p data-i18n="apartment.8.desc">2-bedroom apartment, perfect for couples.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="counters counters-red-bg scroll-animate">
+    <div class="counters-container">
+      <div class="counter-item animate-fade-in-up">
+        <div class="counter-number" data-count="4320">0</div>
+        <div class="counter-label" data-i18n="counter.concrete">Cubic Meters of Concrete</div>
+      </div>
+      <div class="counter-item animate-fade-in-up">
+        <div class="counter-number" data-count="463">0</div>
+        <div class="counter-label" data-i18n="counter.steel">Tonnes of Steel Reinforcments</div>
+      </div>
+      <div class="counter-item animate-fade-in-up">
+        <div class="counter-number" data-count="2028">0</div>
+        <div class="counter-label" data-i18n="counter.date">Completion Date</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="amenities">
+    <h4 class="subheading scroll-animate" data-i18n="amenities.title">Amenities</h4>
+    <h2 class="title scroll-animate" data-i18n="amenities.subtitle">Experience the perfect blend of style and functionality</h2>
+
+    <div class="amenities-slider-wrapper scroll-animate">
+      <button class="amenities-arrow left hover-scale" id="amenities-prev">&larr;</button>
+      <div class="amenities-slider" id="amenities-slider">
+        <div class="amenity-card">
+          <video src="/assets/videos/10_K_3.mp4" autoplay muted loop playsinline class="amenity-video" loading="lazy"></video>
+          <div class="amenity-info">
+            <span class="icon">🎥</span>
+            <span class="label" data-i18n="amenities.virtualTour">Virtual Tour</span>
+          </div>
+        </div>
+        <div class="amenity-card">
+          <video src="/assets/videos/animacion_mila_kati_perdhese.mp4" autoplay muted loop playsinline class="amenity-video" loading="lazy"></video>
+          <div class="amenity-info">
+            <span class="icon">🏠</span>
+            <span class="label" data-i18n="amenities.groundFloor">Ground Floor</span>
+          </div>
+        </div>
+        <div class="amenity-card">
+          <video src="/assets/videos/bodrumi_-2_mila_animacion.mp4" autoplay muted loop playsinline class="amenity-video" loading="lazy"></video>
+          <div class="amenity-info">
+            <span class="icon">🅿️</span>
+            <span class="label" data-i18n="amenities.parking">Parking Spaces</span>
+          </div>
+        </div>
+        <div class="amenity-card">
+          <video src="/assets/videos/cafe-restaurant.mp4" autoplay muted loop playsinline class="amenity-video" loading="lazy"></video>
+          <div class="amenity-info">
+            <span class="icon">🍕</span>
+            <span class="label" data-i18n="amenities.cafeRestaurant">Cafe & Restaurant</span>
+          </div>
+        </div>
+        <div class="amenity-card">
+          <video src="/assets/videos/stores.mp4" autoplay muted loop playsinline class="amenity-video" loading="lazy"></video>
+          <div class="amenity-info">
+            <span class="icon">🛍️</span>
+            <span class="label" data-i18n="amenities.stores">Stores</span>
+          </div>
+        </div>
+        <div class="amenity-card">
+          <video src="/assets/videos/fitnes.mp4" autoplay muted loop playsinline class="amenity-video" loading="lazy"></video>
+          <div class="amenity-info">
+            <span class="icon">🏋️</span>
+            <span class="label" data-i18n="amenities.fitness">Fitness Center</span>
+          </div>
+        </div>
+              </div>
+      <button class="amenities-arrow right hover-scale" id="amenities-next">&rarr;</button>
+    </div>
+    <div class="amenities-dots" id="amenities-dots"></div>
+  </section>  
+  <section class="news">
+    <div class="news-container">
+      <h4 class="subheading scroll-animate" data-i18n="news.title">News</h4>
+      <h2 class="title scroll-animate" data-i18n="news.subtitle">Stay updated with the latest news and events</h2>
+      <div class="news-grid stagger-animation">
+        <div class="news-item hover-lift">
+          <img src="/assets/images/news/betonim-news.png" alt="News 1" loading="lazy">
+          <h3 data-i18n="news.item1">News 1</h3>
+          <p data-i18n="news.1">Kemi përfunduar betonimin e pllakës mbi katin e dytë.</p>
+        </div>
+        <div class="news-item hover-lift">
+          <img src="/assets/images/news/trare-news.jpg" alt="News 2" loading="lazy">
+          <h3 data-i18n="news.item2">News 2</h3>
+          <p data-i18n="news.2">Trarët e punuar me përpikmëri — të fortë, të qëndrueshëm, gati për çdo sfidë.</p>
+        </div>
+        <div class="news-item hover-lift">
+          <img src="/assets/images/news/armimi-news.jpg" alt="News 3" loading="lazy">
+          <h3 data-i18n="news.item3">News 3</h3>
+          <p data-i18n="news.3">Ka filluar armimi i shtyllave dhe mureve të ashensorëve të katit të tretë.</p>
+        </div>
+    </div>
+  </section>
+</div>
+<footer>
+  <div class="footer-links">
+    <a href="index.html" data-i18n="nav.home">Home</a>
+    <a href="interactive-map.html" data-i18n="nav.complex">Our Complex</a>
+    <a href="apartments.html" data-i18n="nav.apartments">Apartments</a>
+    <a href="amenities.html" data-i18n="nav.amenities">Amenities</a>
+    <a href="contact.html" data-i18n="nav.contact">Contact Us</a>
+  </div>
+  <div class="footer-social">
+    <a href="https://www.facebook.com/mila.residence.2025" target="_blank" aria-label="Facebook">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg>
+    </a>
+    <a href="https://www.instagram.com/mila.residence05" target="_blank" aria-label="Instagram">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.069 1.646.069 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.069-4.85.069s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.515 2.497 5.782 2.225 7.148 2.163 8.414 2.105 8.794 2.163 12 2.163zm0-2.163C8.741 0 8.332.012 7.052.07 5.771.128 4.659.334 3.678 1.315c-.98.98-1.187 2.092-1.245 3.373C2.012 5.668 2 6.077 2 12c0 5.923.012 6.332.07 7.612.058 1.281.265 2.393 1.245 3.373.98.98 2.092 1.187 3.373 1.245C8.332 23.988 8.741 24 12 24s3.668-.012 4.948-.07c1.281-.058 2.393-.265 3.373-1.245.98-.98 1.187-2.092 1.245-3.373.058-1.28.07-1.689.07-7.612 0-5.923-.012-6.332-.07-7.612-.058-1.281-.265-2.393-1.245-3.373-.98-.98-2.092-1.187-3.373-1.245C15.668.012 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm7.2-11.162a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+    </a>
+    <a href="https://www.tiktok.com/@mila.residence05" target="_blank" aria-label="TikTok">
+    <svg width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
+      <path d="M232,64a71.91,71.91,0,0,1-48-18.25V144a72,72,0,1,1-72-72,71.46,71.46,0,0,1,16,1.84V50.48A95.55,95.55,0,0,0,104,48a96,96,0,1,0,96,96V94.63A72.11,72.11,0,0,0,232,112Z"/>
+    </svg>
+</a>
+
+  </div>
+  <div class="footer-copyright" data-i18n="footer.copyright">&copy; 2025 Mila Residence. All rights reserved.</div>
+</footer>
+  <!-- i18next Library -->
+  <script src="https://cdn.jsdelivr.net/npm/i18next@23.7.16/dist/umd/i18next.min.js"></script>
+  
+  <!-- Translation files -->
+  <script src="js/translations.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
